@@ -14,6 +14,11 @@ app.use("/api/v1/workouts", v1workoutRouter);
 app.use("/api/v2/tasks", v2taskRouter);
 
 
+
+app.use('/api/v2/users', userRoutes);
+
+
+
 //MongoDB connection
 mongoose.connect(
     process.env.MONGODB_URL)
