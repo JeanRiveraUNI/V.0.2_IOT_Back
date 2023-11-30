@@ -1,7 +1,4 @@
-const User = require('../database/userSchema');
-
-
-//-------------------------------------------------------------------------
+const User = require('../database/schema/userSchema');
 
 const createNewUser = (newUser) => {
     const user = new User(newUser);

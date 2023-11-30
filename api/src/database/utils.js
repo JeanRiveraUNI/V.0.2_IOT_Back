@@ -1,11 +1,11 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
-const userSchema = require('./userSchema');
+const userSchema = require('./schema/userSchema');
 //-------------------------------------------------------------------------
 //base de datos json
 //local
 const saveToDatabase = (DB) => {
-    fs.writeFileSync('./src/database/db.json', JSON.stringify(DB, null, 2),
+    fs.writeFileSync('./src/database/db/db.json', JSON.stringify(DB, null, 2),
     { 
         encoding : 'utf-8',
     });
@@ -14,7 +14,7 @@ const saveToDatabase = (DB) => {
 //base de pruebas json
 //local
 const saveToDatabasePrueba = (DB) => {
-    fs.writeFileSync('./src/database/db_Prueba.json', JSON.stringify(DB, null, 2),
+    fs.writeFileSync('./src/database/db/db_Prueba.json', JSON.stringify(DB, null, 2),
     { 
         encoding : 'utf-8',
     });

@@ -1,4 +1,4 @@
-const DB = require('./db_Prueba.json');
+const DB = require('./db/db_Prueba.json');
 const { saveToDatabasePrueba } = require('./utils');
 
 const getAllTasks = () => {
