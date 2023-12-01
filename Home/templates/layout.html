@@ -13,8 +13,13 @@
         <a href="/">SedeParking</a> 
         <ul>
             <li><a href="/">Home</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/usuario">Perfil</a></li>
+            <li><a href="/salir">Salir</a></li>
+            {% else %}
+            <li><a href="/ingresar">Ingreso</a></li>
             <li><a href="/registro">Registro</a></li>
-            <li><a href="/usuario">Ingresar</a></li>
+            {% endif %}
         </ul>
     </nav>
     {% block content %}
