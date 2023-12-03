@@ -1,6 +1,6 @@
 const fs = require('fs');
-const mongoose = require('mongoose');
 const userSchema = require('./schema/userSchema');
+const { request } = require('http');
 //-------------------------------------------------------------------------
 //base de datos json
 //local
@@ -22,6 +22,7 @@ const saveToDatabasePrueba = (DB) => {
 //-------------------------------------------------------------------------
 //base de datos MongoDB 
 //Atlas
+/*
 const saveToDatabaseUser = (req, res) => {
     const user = userSchema(req.body);
     user
@@ -29,6 +30,14 @@ const saveToDatabaseUser = (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 };
+*/
+
+const saveToDatabaseUser = async (req) => {
+    const saveuser = await userSchema.create(req.body);
+    return saveuser;
+};
+
+
 //-------------------------------------------------------------------------
 module.exports = {
     saveToDatabase,

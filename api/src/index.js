@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 //routes
 app.use(express.json())
 app.use("/api/v1/workouts", v1workoutRouter); 
+
 //routes tasks
 app.use("/api/v2/tasks", v2taskRouter);
 
@@ -31,6 +32,11 @@ mongoose.connect(
     }
 );
 
+//Server
+app.listen(PORT, () => { 
+    console.log(`Server is running on port ${PORT}.`); 
+});
+
 //CORS
 /*
 app.use(cors());
@@ -48,9 +54,3 @@ app.get('/', cors(corsOptions), (req, res) =>{
     res.send('Hello World');
 });
 */
-
-
-//Server
-app.listen(PORT, () => { 
-    console.log(`Server is running on port ${PORT}.`); 
-});

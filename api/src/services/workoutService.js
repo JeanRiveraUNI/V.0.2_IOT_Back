@@ -8,7 +8,6 @@ const getAllWorkouts = () => {
 
 const getOneWorkout = (workoutId) => {
     const workout = Workout.getOneWorkout(workoutId);
-
     return workout;
 };
 
