@@ -1,6 +1,6 @@
 const userSchema = require('./schema/userSchema');
 // mostrar todos los usuarios
-const getAllUsers =  () => {
+const getAllUsers = () => {
     const allUsers = userSchema.find().exec(); // Agregar .exec()
     return allUsers;
 };
@@ -10,17 +10,30 @@ const getOneUser = async (userId) => {
     return user;
 };
 // crear un usuario
-const createNewUser = async (newUser) => {
+const createNewUser = async(newUser) => {
     const isAlreadyAdded = await userSchema.findOne({
         username: newUser.username,
     });
     if (isAlreadyAdded) {
         return;
     }
-    const user = await userSchema.create(newUser);
+    const user = userSchema.create(newUser);
+    return user;
+};
+
+/*
+const createNewUser = async (newUser) => {
+    const isAlreadyAdded = userSchema.findOne({
+        username: newUser.username,
+    });
+    if (isAlreadyAdded) {
+        return;
+    }
+    const user =  userSchema.create(newUser);
     console.log(user);
     return user;
 };
+*/
 // actualizar un usuario
 const updateOneUser = async (userId, body) => {
     const updatedUser = await userSchema.findByIdAndUpdate(

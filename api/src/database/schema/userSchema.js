@@ -1,3 +1,61 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        require: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        require: true,
+    },
+    email : {
+        type: String,
+        require: true,
+        unique: true,
+    },
+    role : {
+        type: String,
+        require: true,
+        enum: ['Docente', 'Alumno'],
+    },
+    personalData: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PersonalData',
+    },
+    created_at: {
+        type: Date,
+        default: Date.now,
+    },
+    lastUpdate_at: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
+// Antes de guardar el usuario, hasheamos la contraseña y actualizamos la fecha de creación
+userSchema.pre('save', async function (next) {
+    try {
+        const currentDate = new Date();
+        this.lastUpdate_at = currentDate;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(this.password, salt);
+        this.password = hashedPassword;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
+// metodo para comparar las contraseñas
+userSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+};
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+
+/*
 const {Schema, model} = require('mongoose');
 const bcrypt = require('bcryptjs');
 
@@ -29,3 +87,4 @@ userSchema.methods.matchPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 module.exports = model('User', userSchema);
+*/

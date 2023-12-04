@@ -1,11 +1,11 @@
 const userService = require('../services/userService');
-/*
+
 // mostrar todos los usuarios
 const getAllUsers = (req, res) => {
     const getAllUsers = userService.getAllUsers();
     res.send({status: 'OK', data: getAllUsers});
 };
-*/
+/*
 // mostrar todos los usuarios
 const getAllUsers = (req, res) => {
     const allUsers = userService.getAllUsers();
@@ -13,12 +13,14 @@ const getAllUsers = (req, res) => {
     // Intenta convertir a JSON
     try {
         const serializedUsers = JSON.stringify(allUsers);
+        console.log('Datos serializados:', serializedUsers);
         res.send({ status: 'OK', data: serializedUsers });
     } catch (error) {
         console.error('Error al serializar datos a JSON:', error);
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
+*/
 
 // mostrar un usuario
 const getOneUser = (req, res) => {

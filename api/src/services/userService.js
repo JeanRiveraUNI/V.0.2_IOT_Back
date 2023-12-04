@@ -1,9 +1,21 @@
 const User = require('../database/User');
 
 // mostrar todos los usuarios
-const getAllUsers = () => {
-    const allUsers = User.getAllUsers();
+const getAllUsers = async () => {
+    const allUsers = await User.getAllUsers();
     return allUsers;
+    
+    /*
+    try {
+
+        const allUsers = User.getAllUsers();
+        return allUsers;
+    }
+    catch (error) {
+        console.error('Error al serializar datos a JSON:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+    */
 };
 
 // mostrar un usuario
