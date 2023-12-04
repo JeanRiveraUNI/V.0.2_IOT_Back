@@ -30,8 +30,6 @@ const userSchema = new mongoose.Schema({
 }, {
     versionKey: false,
 });
-
-
 // Antes de guardar el usuario, hasheamos la contraseña y actualizamos la fecha de creación
 userSchema.pre('save', async function (next) {
     try {

@@ -25,6 +25,32 @@ const getOneUser = async (req, res) => {
 };
 // crear un usuario
 const createNewUser = async (req, res) => {
+    const body = req.body;
+    if (
+        !body.name ||
+        !body.password ||
+        !body.email ||
+        !body.role
+    ) {
+        return;
+    }
+    const newUser = {
+        name: body.name,
+        password: body.password,
+        email: body.email,
+        role: body.role,
+    };
+    try {
+        const createdUser = await userService.createNewUser(newUser);
+        console.log('Usuario creado:', createdUser);
+        res.status(201).send({status: 'OK', data: createdUser});
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+};
+/*
+const createNewUser = async (req, res) => {
     try {
         const {body} = req;
         if (
@@ -49,7 +75,6 @@ const createNewUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-/*
 const createNewUser = (req, res) => {
     const {body} = req;
     if (
