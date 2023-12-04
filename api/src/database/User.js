@@ -1,15 +1,36 @@
 const userSchema = require('./schema/userSchema');
-// mostrar todos los usuarios
-const getAllUsers = () => {
-    const allUsers = userSchema.find().exec(); // Agregar .exec()
-    return allUsers;
+const User = require('./schema/userSchema');
+// traer los datos de todos los usuarios
+const getAllUsers = async () => {
+    try {
+        const allUsers = await userSchema.find();
+        return allUsers;
+    } catch (error) {
+        console.error('Error al obtener todos los usuarios:', error);
+        throw error;
+    }
 };
 // mostrar un usuario
 const getOneUser = async (userId) => {
-    const user = await userSchema.findById(userId);
-    return user;
+    try {
+        const user = await userSchema.findById(userId);
+        return user;
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error);
+        throw error;
+    }
 };
 // crear un usuario
+const createNewUser = async (newUser) => {
+    try {
+        const user = await userSchema.create(newUser);
+        return user;
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+    }
+};
+/*
 const createNewUser = async(newUser) => {
     const isAlreadyAdded = await userSchema.findOne({
         username: newUser.username,
@@ -20,6 +41,7 @@ const createNewUser = async(newUser) => {
     const user = userSchema.create(newUser);
     return user;
 };
+*/
 
 /*
 const createNewUser = async (newUser) => {

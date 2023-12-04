@@ -1,40 +1,55 @@
 const userService = require('../services/userService');
 
 // mostrar todos los usuarios
-const getAllUsers = (req, res) => {
-    const getAllUsers = userService.getAllUsers();
-    res.send({status: 'OK', data: getAllUsers});
-};
-/*
-// mostrar todos los usuarios
-const getAllUsers = (req, res) => {
-    const allUsers = userService.getAllUsers();
-
-    // Intenta convertir a JSON
+const getAllUsers = async (req, res) => {
     try {
-        const serializedUsers = JSON.stringify(allUsers);
-        console.log('Datos serializados:', serializedUsers);
-        res.send({ status: 'OK', data: serializedUsers });
+        const allUsers = await userService.getAllUsers();
+        console.log('Datos obtenidos:', allUsers);
+        res.send({ status: 'OK', data: allUsers });
     } catch (error) {
-        console.error('Error al serializar datos a JSON:', error);
+        console.error('Error al obtener todos los usuarios:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+}; 
+// mostrar un usuario
+const getOneUser = async (req, res) => {
+    try {
+        const {userId} = req.params;
+        const user = await userService.getOneUser(userId);
+        console.log('Datos obtenidos:', user);
+        res.send({ status: 'OK', data: user });
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error);
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-*/
-
-// mostrar un usuario
-const getOneUser = (req, res) => {
-    const {
-        params: {userId},
-    } = req;
-
-    if (!userId) {
-        return;
-    }
-    const user = userService.getOneUser(userId);
-    res.send({status: 'OK', data: user});
-};
 // crear un usuario
+const createNewUser = async (req, res) => {
+    try {
+        const {body} = req;
+        if (
+            !body.name ||
+            !body.password ||
+            !body.email ||
+            !body.role
+        ) {
+            return;
+        }
+        const newUser = {
+            name: body.name,
+            password: body.password,
+            email: body.email,
+            role: body.role,
+        };
+        const createdUser = await userService.createNewUser(newUser);
+        console.log('Datos obtenidos:', createdUser);
+        res.status(201).send({status: 'OK', data: createdUser});
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+};
+/*
 const createNewUser = (req, res) => {
     const {body} = req;
     if (
@@ -54,6 +69,7 @@ const createNewUser = (req, res) => {
     const createdUser = userService.createNewUser(newUser);
     res.status(201).send({status: 'OK', data: createdUser});
 };
+*/
 // actualizar un usuario
 const updateOneUser = (req, res) => {
     const {body, params : {userId},

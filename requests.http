@@ -1,10 +1,22 @@
 ###
-POST http://localhost:3000/api/v2/users HTTP/1.1
+GET  http://localhost:3000/api/v2/users/ HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+GET http://localhost:3000/api/v2/users/656c4df36ba055e4071b7f62 HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+POST http://localhost:3000/api/v2/users/ HTTP/1.1
 Content-Type: application/json
   
 {
-    "username": "test1",
-    "password": "test123",
-    "email": "test123@test.cl",
+    "name": "Jean",
+    "password": "123456",
+    "email": "jean@jean.cl",
     "role": "Docente"
 }

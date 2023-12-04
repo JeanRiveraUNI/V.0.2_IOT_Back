@@ -2,28 +2,22 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-    username: {
+    name : {
         type: String,
         require: true,
-        unique: true,
     },
-    password: {
+    password : {
         type: String,
         require: true,
     },
     email : {
         type: String,
         require: true,
-        unique: true,
     },
     role : {
         type: String,
         require: true,
         enum: ['Docente', 'Alumno'],
-    },
-    personalData: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'PersonalData',
     },
     created_at: {
         type: Date,
@@ -33,7 +27,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+}, {
+    versionKey: false,
 });
+
 
 // Antes de guardar el usuario, hasheamos la contraseña y actualizamos la fecha de creación
 userSchema.pre('save', async function (next) {
@@ -52,8 +49,7 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
 
 /*
 const {Schema, model} = require('mongoose');
