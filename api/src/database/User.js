@@ -30,33 +30,22 @@ const createNewUser = async (newUser) => {
         throw error;
     }
 };
-/*
-const createNewUser = async(newUser) => {
-    const isAlreadyAdded = await userSchema.findOne({
-        username: newUser.username,
-    });
-    if (isAlreadyAdded) {
-        return;
+// actualizar un usuario
+const updateOneUser = async (userId, body) => {
+    try {
+        const updatedUser = await userSchema.findByIdAndUpdate(
+            userId,
+            body,
+            { new: true }
+        );
+        return updatedUser;
+    } catch (error) {
+        console.error('Error al actualizar el usuario:', error);
+        throw error;
     }
-    const user = userSchema.create(newUser);
-    return user;
 };
-*/
 
 /*
-const createNewUser = async (newUser) => {
-    const isAlreadyAdded = userSchema.findOne({
-        username: newUser.username,
-    });
-    if (isAlreadyAdded) {
-        return;
-    }
-    const user =  userSchema.create(newUser);
-    console.log(user);
-    return user;
-};
-*/
-// actualizar un usuario
 const updateOneUser = async (userId, body) => {
     const updatedUser = await userSchema.findByIdAndUpdate(
         userId,
@@ -65,6 +54,7 @@ const updateOneUser = async (userId, body) => {
     );
     return updatedUser;
 };
+*/
 
 // borrar un usuario
 const deleteOneUser = async (userId) => {

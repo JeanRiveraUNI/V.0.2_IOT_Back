@@ -49,53 +49,23 @@ const createNewUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-/*
-const createNewUser = async (req, res) => {
+// actualizar un usuario
+const updateOneUser = async (req, res) => {
+    const {body, params : {userId}}= req;
+    if (!userId) {
+        return;
+    }
     try {
-        const {body} = req;
-        if (
-            !body.name ||
-            !body.password ||
-            !body.email ||
-            !body.role
-        ) {
-            return;
-        }
-        const newUser = {
-            name: body.name,
-            password: body.password,
-            email: body.email,
-            role: body.role,
-        };
-        const createdUser = await userService.createNewUser(newUser);
-        console.log('Datos obtenidos:', createdUser);
-        res.status(201).send({status: 'OK', data: createdUser});
+        const updatedUser = await userService.updateOneUser(userId, body);
+        console.log('Usuario actualizado:', updatedUser);
+        res.send({status: 'OK', data: updatedUser});
     } catch (error) {
-        console.error('Error al crear el usuario:', error);
+        console.error('Error al actualizar el usuario:', error);
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-const createNewUser = (req, res) => {
-    const {body} = req;
-    if (
-        !body.username ||
-        !body.password ||
-        !body.email ||
-        !body.role
-    ) {
-        return;
-    }
-    const newUser = {
-        username: body.username,
-        password: body.password,
-        email: body.email,
-        role: body.role,
-    };
-    const createdUser = userService.createNewUser(newUser);
-    res.status(201).send({status: 'OK', data: createdUser});
-};
-*/
-// actualizar un usuario
+
+/*
 const updateOneUser = (req, res) => {
     const {body, params : {userId},
     } = req;
@@ -107,6 +77,7 @@ const updateOneUser = (req, res) => {
     const updatedUser = userService.updateOneUser(userId, body);
     res.send({status: 'OK', data: updatedUser});
 };
+*/
 // borrar un usuario
 const deleteOneUser = (req, res) => {
     const {
