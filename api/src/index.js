@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-//const cors = require('cors');
+const cors = require('cors');
 const v1workoutRouter = require('./v1/routes/workoutRoutes');
 const v2taskRouter = require('./v2/routes/taskRoutes');
 const v2userRouter = require('./v2/routes/userRoutes');
@@ -41,10 +41,10 @@ app.listen(PORT, () => {
 //CORS
 /*
 app.use(cors());
-var whitelist = ['http://localhost:8000/singup'];
+var whitelist = ['http://localhost:8000/registro'];
 var corsOptions = {
     origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) === -1) { 
+        if (whitelist.indexOf(origin) !== -1) { 
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));

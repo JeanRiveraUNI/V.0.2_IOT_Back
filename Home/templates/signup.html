@@ -3,7 +3,7 @@
 <h1>Registrate</h1>
 {{ error }}
 <div class="container">
-    <form method="POST">
+    <form method="POST" action="http://localhost:3000/api/v2/users/">
         {% csrf_token %}
         {{ form.as_p }}
         <button>
