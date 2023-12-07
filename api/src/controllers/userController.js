@@ -51,11 +51,13 @@ const createNewUser = async (req, res) => {
 };
 // actualizar un usuario
 const updateOneUser = async (req, res) => {
-    const {body, params : {userId}}= req;
+    const {body, params: {userId}} = req;
     if (!userId) {
-        return;
+        console.error('id de usuario no encontrado');
+        return res.status(400).send({ status: 'Error', message: 'id de usuario no encontrado' });
     }
     try {
+        console.log('Actualizando usuario con id:', userId);
         const updatedUser = await userService.updateOneUser(userId, body);
         console.log('Usuario actualizado:', updatedUser);
         res.send({status: 'OK', data: updatedUser});
@@ -64,21 +66,33 @@ const updateOneUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
+// borrar un usuario
+const deleteOneUser = async (req, res) => {
+    const {
+        params: { userId },
+    } = req;
+
+    if (!userId) {
+        console.error('Error al eliminar usuario: Falta el ID del usuario');
+        res.status(400).send({ status: 'Error', message: 'Falta el ID del usuario' });
+        return;
+    }
+
+    try {
+        await userService.deleteOneUser(userId);
+        console.log(`Usuario con ID ${userId} eliminado exitosamente`);
+        res.status(204).send({ status: 'OK', message: 'Usuario eliminado exitosamente' });
+    } catch (error) {
+        console.error('Error al eliminar usuario:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+};
+
+module.exports = {
+    deleteOneUser,
+};
 
 /*
-const updateOneUser = (req, res) => {
-    const {body, params : {userId},
-    } = req;
-    
-    if (!userId) {
-        return;
-    };
-
-    const updatedUser = userService.updateOneUser(userId, body);
-    res.send({status: 'OK', data: updatedUser});
-};
-*/
-// borrar un usuario
 const deleteOneUser = (req, res) => {
     const {
         params: {userId},
@@ -90,6 +104,7 @@ const deleteOneUser = (req, res) => {
     userService.deleteOneUser(userId);
     res.status(204).send({status: 'OK'});
 };
+*/
 
 module.exports = {
     getAllUsers,

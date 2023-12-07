@@ -8,14 +8,4 @@ router
     .post('/', userController.createNewUser)
     .put('/:userId', userController.updateOneUser)
     .delete('/:userId', userController.deleteOneUser);
-
-
 module.exports = router;
-
-//router.post('/users', (req, res) => {
-    //const user = userController.createNewUser(req.body);
-    //user 
-        //.save()
-        //.then((data) => res.json(data))
-        //.catch((error) => res.json({ message: error }));
-//});

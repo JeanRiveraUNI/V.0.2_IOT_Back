@@ -5,7 +5,7 @@ Content-Type: application/json
 {}
 
 ###
-GET http://localhost:3000/api/v2/users/656d923d058091a44e6cb746 HTTP/1.1
+GET http://localhost:3000/api/v2/users/6571bd46e02feecaf5175cec HTTP/1.1
 Content-Type: application/json
   
 {}
@@ -15,15 +15,24 @@ POST http://localhost:3000/api/v2/users/ HTTP/1.1
 Content-Type: application/json
   
 {
-    "name": "Javiera",
-    "password": "123javi",
-    "email": "javi@javiera.cl",
+    "name": "Mateo",
+    "password": "mateo123",
+    "email": "mateo@mateo.cl",
     "role": "Alumno"
 }
 
-###
-PUT http://localhost:3000/api/v2/users/656d923d058091a44e6cb746 HTTP/1.1
 
+###
+PUT http://localhost:3000/api/v2/users/6571bd46e02feecaf5175cec HTTP/1.1
+Content-Type: application/json
+  
 {
-    "email": "mateo@mateo.cl",
+    "role": "Docente"
 }
+
+
+###
+DELETE http://localhost:3000/api/v2/users/6571c458db7e806f73ac0c64 HTTP/1.1
+Content-Type: application/json
+  
+{}

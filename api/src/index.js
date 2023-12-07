@@ -9,8 +9,12 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//routes
+//Middlewares
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+//routes workouts
 app.use("/api/v1/workouts", v1workoutRouter); 
 
 //routes tasks
@@ -18,7 +22,6 @@ app.use("/api/v2/tasks", v2taskRouter);
 
 //routes users
 app.use('/api/v2/users', v2userRouter);
-
 
 
 //MongoDB connection
@@ -35,7 +38,7 @@ mongoose.connect(
 
 //Server
 app.listen(PORT, () => { 
-    console.log(`Server is running on port ${PORT}.`); 
+    console.log(`Server is running on port 'http://localhost:${PORT}'`); 
 });
 
 //CORS

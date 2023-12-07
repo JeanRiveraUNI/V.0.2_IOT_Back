@@ -2,13 +2,15 @@
 {% block content %}
 <h1>Registrate</h1>
 {{ error }}
-<div class="container">
+<body>
+    <div class="container">
     <form method="POST" >
         {% csrf_token %}
         {{ form.as_p }}
         <button>
             Enviar
         </button>
+        {{ form.errors }}
     </form>
 </div>
 {% endblock %}

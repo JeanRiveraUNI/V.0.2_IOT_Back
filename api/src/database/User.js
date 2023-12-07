@@ -34,10 +34,13 @@ const createNewUser = async (newUser) => {
 const updateOneUser = async (userId, body) => {
     try {
         const updatedUser = await userSchema.findByIdAndUpdate(
-            userId,
-            body,
+            {_id: userId},
+            {$set: body},
             { new: true }
         );
+        if (!updatedUser) {
+            throw new Error('Usuario no encontrado');
+        }
         return updatedUser;
     } catch (error) {
         console.error('Error al actualizar el usuario:', error);

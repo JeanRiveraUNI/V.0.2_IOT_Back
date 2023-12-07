@@ -24,16 +24,38 @@ const createNewUser = (newUser) => {
     return createdUser;
 };
 // actualizar un usuario
-const updateOneUser = (userId, body) => {
-    const updatedUser = User.updateOneUser(userId, body);
-    return updatedUser;
+const updateOneUser = async (userId, body) => {
+    try {
+        const existingUser = await User.getOneUser(userId);
+        if (!existingUser) {
+            throw new Error('Usuario no encontrado');
+        }
+        // se actualizan los campos que llegan en el body
+        if (body.username) {
+            existingUser.username = body.username;
+        }
+        if (body.password) {
+            existingUser.password = body.password;
+        }
+        if (body.email) {
+            existingUser.email = body.email;
+        }
+        if (body.role) {
+            existingUser.role = body.role;
+        }
+        existingUser.lastUpdate_at = Date.now();
+        const updatedUser = await existingUser.save();
+        return updatedUser;
+    } catch (error) {
+        console.error('Error al actualizar el usuario:', error);
+        throw error;
+    }
 };
 
 // borrar un usuario
 const deleteOneUser = (userId) => {
     return User.deleteOneUser(userId);
 };
-
 module.exports = {
     getAllUsers,
     getOneUser,
