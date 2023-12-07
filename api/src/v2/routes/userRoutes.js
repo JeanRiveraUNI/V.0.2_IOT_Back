@@ -9,6 +9,7 @@ router
     .put('/:userId', userController.updateOneUser)
     .delete('/:userId', userController.deleteOneUser);
 
+
 module.exports = router;
 
 //router.post('/users', (req, res) => {

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+import requests
 
 
 # Create your views here.
@@ -62,17 +63,3 @@ def signin(request):
         else:
             login(request, user)
             return redirect('usuario')
-    
-        
-
-
-        
-
-
-    
-
-
-
-
-
-
