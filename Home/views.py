@@ -41,11 +41,7 @@ def signout(request):
     logout(request)
     return redirect('Home')
 
-
 def signin(request):
-    #URL de la solicitud: inicio de sesión
-    URL_API = 'http://localhost:3000/api/v2/users'
-
     if request.method == 'GET':
         return render(request, 'signin.html', {
             'form': AuthenticationForm()
@@ -62,17 +58,3 @@ def signin(request):
         else:
             login(request, user)
             return redirect('usuario')
-    
-        
-
-
-        
-
-
-    
-
-
-
-
-
-
