@@ -19,6 +19,7 @@
         .container {
             background-color: #fff;
             padding: 60px;
+            width: 300px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -160,6 +161,10 @@
                 <input type="text" id="companyRut" name="companyRut" required>
             </div>
             <div class="form-group">
+                <label for="companyEmail">Correo:</label>
+                <input type="email" id="companyEmail" name="companyEmail" required>
+            </div>
+            <div class="form-group">
                 <label for="companyPassword">Contraseña:</label>
                 <input type="password" id="companyPassword" name="companyPassword" required>
             </div>
@@ -177,7 +182,8 @@
     const accountSwitch = document.getElementById('accountSwitch');
     const companyForm = document.getElementById('companyForm');
     const personForm = document.getElementById('personForm');
-
+    const accountForm = document.getElementById('accountForm');
+    // Cambiar el formulario según el tipo de cuenta
     accountSwitch.addEventListener('change', () => {
         if (accountSwitch.checked) {
             // Mostrar formulario de Empresa
@@ -189,7 +195,6 @@
             personForm.style.display = 'block';
         }
     });
-
     // Inicializar el formulario con el tipo de cuenta predeterminado
     if (accountSwitch.checked) {
         // Mostrar formulario de Empresa
@@ -198,6 +203,12 @@
         // Mostrar formulario de Persona
         personForm.style.display = 'block';
     }
+    accountForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(accountForm);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+    });
 </script>
 
 </body>

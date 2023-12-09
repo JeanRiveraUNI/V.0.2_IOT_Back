@@ -1,0 +1,91 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header con Navegación</title>
+    {% block content %}
+    <style>
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            /* Puedes poner la ruta a tu logo aquí */
+            /* background: url('ruta/a/tu/logo.png') no-repeat; */
+            background-size: contain;
+            height: 50px; /* Ajusta la altura según tu logo */
+            width: 100px; /* Ajusta el ancho según tu logo */
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #FFD700; /* Cambia el color al pasar el ratón */
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<header>
+    <div id="logo">
+        <!-- Coloca tu logo aquí -->
+    </div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Estacionamientos</a>
+        <a href="#">Servicios</a>
+        <div class="dropdown">
+            <button class="dropbtn">Inicio de Sesión</button>
+            <div class="dropdown-content">
+                <a href="#">Iniciar Sesión</a>
+                <a href="#">Crear Cuenta</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Contenido de la página aquí -->
+</html>

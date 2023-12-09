@@ -8,8 +8,8 @@ import requests
 
 # Create your views here.
 def Home(request):
-    response = requests.get('http://localhost:3000/api/v2/users')
-    data = response.json()
+    #response = requests.get('http://localhost:3000/api/v2/users')
+    #data = response.json()
     return render(request, 'home.html')
 
 def Signup(request):
@@ -65,6 +65,7 @@ def signin(request):
             return redirect('usuario')
         
 def login (request):
+    
     return render(request, 'login.html')
 
 def registro (request):
