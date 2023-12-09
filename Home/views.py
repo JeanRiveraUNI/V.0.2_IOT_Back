@@ -9,40 +9,7 @@ import requests
 
 # Create your views here.
 def Home(request):
-    #response = requests.get('http://localhost:3000/api/v2/users')
-    #data = response.json()
     return render(request, 'home.html')
-
-def Signup(request):
-    
-    if request.method == 'GET':
-        return render(request, 'signup.html', {'form': CreateUser()})
-    elif request.method == 'POST':
-        form = CreateUser(request.POST)
-        print(form.is_valid()) 
-        if form.is_valid():
-            try:
-                # Crear el usuario localmente
-                user = User.objects.create_user(
-                    email=form.cleaned_data['email'],
-                    password=form.cleaned_data['password1']
-                )
-                login(request, user)
-                return redirect('usuario')
-            except IntegrityError:
-                return render(request, 'signup.html', {'form': form, 'error': 'Usuario ya existe'})
-        else:
-            print(form.errors)
-            return render(request, 'signup.html', {'form': form, 'error': 'El formulario no es válido'})
-    else:
-        return render(request, 'signup.html', {'form': CreateUser(), 'error': 'Método no permitido'})
-    
-def Users(request):
-    return render(request, 'user.html')
-
-def signout(request):
-    logout(request)
-    return redirect('Home')
 
 def signin(request):
     URL_API = 'http://localhost:3000/api/v3/login'
@@ -65,59 +32,56 @@ def signin(request):
             login(request, user)
             return redirect('usuario')
         
-def login(request):
-    # URL de tu API Node.js
-    URL_API = 'http://localhost:3000/api/v2/users'
-
+def login_view(request):
+    # URL de tu API Node.js para obtener la lista de usuarios
+    URL_API_LIST = 'http://localhost:3000/api/v2/users'
+    
     if request.method == 'GET':
-        return render(request, 'login.html', {
-            'form': AuthenticationForm()
-        })
-    else:
-        # Realiza la petición a la API para autenticar al usuario
-        api_response = requests.get(URL_API, params={
+        return render(request, 'login.html', {'form': AuthenticationForm()})
+    elif request.method == 'POST':
+        # Realiza la petición a la API para obtener la lista de usuarios
+        api_response_list = requests.get(URL_API_LIST, params={
             'email': request.POST['email'],
             'password': request.POST['password']
         })
 
-        # Imprime la respuesta de la API (puedes quitar esto en producción)
-        print(api_response.text)
-
-        # Verifica la respuesta de la API
-        if api_response.status_code == 200:
+        if api_response_list.status_code == 200:
             try:
-                users_data = api_response.json()['data']
-
-                # Busca el usuario correcto
+                users_data = api_response_list.json()['data']
                 user_data = next((user for user in users_data if user.get('email') == request.POST['email']), None)
 
                 if user_data:
-                    #user = authenticate(request, email=user_data.get('email'), password=user_data.get('password'))
-                    user = authenticate(request, email=user_data['email'], password=user_data['password'])
-                    if user is None or not check_password(user_data['password'], user.password):
-                        return render(request, 'login.html', {
-                            'form': AuthenticationForm(),
-                            'error': 'Usuario y contraseña no coinciden'
-                        })
+                    user_id = user_data.get('_id')
+                    URL_API_USER = f'http://localhost:3000/api/v2/users/{user_id}'
+                    api_response_user = requests.get(URL_API_USER)
+
+                    if api_response_user.status_code == 200:
+                        user_data = api_response_user.json()['data']
+                        user = authenticate(request, email=user_data.get('email'), password=request.POST['password'])
+
+                        if user is not None:
+                            login(request, user)
+                            return redirect('usuario')
+                        else:
+                            return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Error al autenticar al usuario'})
                     else:
-                        login(request, user)
-                        return redirect('usuario')
+                        return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Error al obtener los detalles del usuario por ID'})
                 else:
-                    return render(request, 'login.html', {
-                        'form': AuthenticationForm(),
-                        'error': 'Usuario no encontrado'
-                    })
+                    return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Correo o contraseña incorrectos'})
             except Exception as e:
-                return render(request, 'login.html', {
-                    'form': AuthenticationForm(),
-                    'error': 'Error al procesar la respuesta de la API'
-                })
+                return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Error al procesar la respuesta de la API'})
         else:
-            # Maneja el caso en que la API no devuelva un estado 200 (éxito)
-            return render(request, 'login.html', {
-                'form': AuthenticationForm(),
-                'error': 'Error al autenticar al usuario'
-            })
+            return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Error al autenticar al usuario'})
+
+    else:
+        return render(request, 'login.html', {'form': AuthenticationForm(), 'error': 'Método no permitido'})
+    
+def Users(request):
+    return render(request, 'user.html')
+
+def signout(request):
+    logout(request)
+    return redirect('Home')
 
 def registro (request):
     return render(request, 'registro.html')
