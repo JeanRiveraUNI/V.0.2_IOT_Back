@@ -6,24 +6,14 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 import requests
 
-# conectarse a la API
-def get_api():
-    URL_API = 'http://localhost:3000/api/v2/users'
-    r = requests.get(URL_API)
-    print(r.status_code == 200)
-    return r.json()
-
-
 # Create your views here.
-
 def Home(request):
+    response = requests.get('http://localhost:3000/api/v2/users')
+    data = response.json()
     return render(request, 'home.html')
 
 def Signup(request):
-    URL_API = 'http://localhost:3000/api/v2/users'
-    r = requests.get(URL_API)
-    print(r.status_code == 200)
-
+    
     if request.method == 'GET':
         return render(request, 'signup.html', {'form': CreateUser()})
     elif request.method == 'POST':
