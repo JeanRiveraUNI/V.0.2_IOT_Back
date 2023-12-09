@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import CreateUser
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
@@ -64,9 +65,59 @@ def signin(request):
             login(request, user)
             return redirect('usuario')
         
-def login (request):
-    
-    return render(request, 'login.html')
+def login(request):
+    # URL de tu API Node.js
+    URL_API = 'http://localhost:3000/api/v2/users'
+
+    if request.method == 'GET':
+        return render(request, 'login.html', {
+            'form': AuthenticationForm()
+        })
+    else:
+        # Realiza la petición a la API para autenticar al usuario
+        api_response = requests.get(URL_API, params={
+            'email': request.POST['email'],
+            'password': request.POST['password']
+        })
+
+        # Imprime la respuesta de la API (puedes quitar esto en producción)
+        print(api_response.text)
+
+        # Verifica la respuesta de la API
+        if api_response.status_code == 200:
+            try:
+                users_data = api_response.json()['data']
+
+                # Busca el usuario correcto
+                user_data = next((user for user in users_data if user.get('email') == request.POST['email']), None)
+
+                if user_data:
+                    #user = authenticate(request, email=user_data.get('email'), password=user_data.get('password'))
+                    user = authenticate(request, email=user_data['email'], password=user_data['password'])
+                    if user is None or not check_password(user_data['password'], user.password):
+                        return render(request, 'login.html', {
+                            'form': AuthenticationForm(),
+                            'error': 'Usuario y contraseña no coinciden'
+                        })
+                    else:
+                        login(request, user)
+                        return redirect('usuario')
+                else:
+                    return render(request, 'login.html', {
+                        'form': AuthenticationForm(),
+                        'error': 'Usuario no encontrado'
+                    })
+            except Exception as e:
+                return render(request, 'login.html', {
+                    'form': AuthenticationForm(),
+                    'error': 'Error al procesar la respuesta de la API'
+                })
+        else:
+            # Maneja el caso en que la API no devuelva un estado 200 (éxito)
+            return render(request, 'login.html', {
+                'form': AuthenticationForm(),
+                'error': 'Error al autenticar al usuario'
+            })
 
 def registro (request):
     return render(request, 'registro.html')
