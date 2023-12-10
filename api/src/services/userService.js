@@ -56,12 +56,18 @@ const updateOneUser = async (userId, body) => {
 const deleteOneUser = (userId) => {
     return User.deleteOneUser(userId);
 };
+// autenticar un usuario
+const authenticate = (username, password) => {
+    return User.authenticate(username, password);
+};
+
 module.exports = {
     getAllUsers,
     getOneUser,
     createNewUser,
     updateOneUser,
     deleteOneUser,
+    authenticate,
 };
 //--------------------------------------------------------------
 /*

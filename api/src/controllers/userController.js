@@ -90,10 +90,35 @@ const deleteOneUser = async (req, res) => {
     }
 };
 
+const authenticate = async (req, res) => {
+    const { body } = req;
+    if (!body.email || 
+        !body.password
+        ) {
+        return;
+    }
+    const user = {
+        email: body.email,
+        password: body.password,
+    };
+
+    try {
+        const authenticatedUser = await userService.authenticate(user);
+        console.log('Usuario autenticado:', authenticatedUser);
+        res.status(201).send({status: 'OK', data: authenticatedUser});
+    } catch (error) {
+        console.error('Error al autenticar el usuario:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+}
+
+
+
 module.exports = {
     getAllUsers,
     getOneUser,
     createNewUser,
     updateOneUser,
     deleteOneUser,
+    authenticate,
 };

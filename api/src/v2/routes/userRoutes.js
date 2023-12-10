@@ -7,5 +7,7 @@ router
     .get('/:userId', userController.getOneUser)
     .post('/', userController.createNewUser)
     .put('/:userId', userController.updateOneUser)
-    .delete('/:userId', userController.deleteOneUser);
+    .delete('/:userId', userController.deleteOneUser)
+    .get('/authenticate', userController.authenticate);
+    
 module.exports = router;

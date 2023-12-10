@@ -47,27 +47,28 @@ const updateOneUser = async (userId, body) => {
         throw error;
     }
 };
-
-/*
-const updateOneUser = async (userId, body) => {
-    const updatedUser = await userSchema.findByIdAndUpdate(
-        userId,
-        body,
-        { new: true }
-    );
-    return updatedUser;
-};
-*/
-
 // borrar un usuario
 const deleteOneUser = async (userId) => {
     const deletedUser = await userSchema.findByIdAndDelete(userId);
     return deletedUser;
 };
+// autenticar un usuario
+const authenticate = async (userId, password) => {
+    const user = await userSchema.findById(userId);
+    if (!user) {
+        throw new Error('Usuario no encontrado');
+    }
+    if (user.password !== password) {
+        throw new Error('Contraseña incorrecta');
+    }
+    return user;
+};
+
 module.exports = {
     getAllUsers,
     getOneUser,
     createNewUser,
     updateOneUser,
     deleteOneUser,
+    authenticate,
 };
