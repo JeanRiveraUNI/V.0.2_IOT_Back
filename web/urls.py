@@ -22,8 +22,8 @@ urlpatterns = [
     path('', views.Home , name='Home'),
     path('login/persona', views.login_per , name='login_per'),
     path("login/empresa", views.login_emp , name="login_emp"),
-    path('registro/persona', views.registro_per, name='registro_persona'),
-    path("registro/empresa", views.registro_emp, name="registro_empresa"),
+    path('registro/persona', views.registro_per, name='registro_per'),
+    path("registro/empresa", views.registro_emp, name="registro_emp"),
     path('usuario/', views.Users , name='usuario'),
     path('salir/', views.signout , name='salir'),
 ]

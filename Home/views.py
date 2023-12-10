@@ -3,7 +3,8 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth import authenticate, login
-from .forms import FormularioCrearPersona, FormularioCrearEmpresa
+from .forms import FormularioCrearPersona, FormularioCrearEmpresa, FormularioInicioPersona, FormularioIncioEmpresa
+
 import requests
 
 
@@ -93,9 +94,51 @@ def registro_emp (request):
         # Devuelve una respuesta de error para cualquier otro caso
         return HttpResponseBadRequest('Método no permitido')
 
+# incio de sesion para persona
 def login_per (request):
-    return render(request, 'login_per.html')
+    URL_API = 'http://localhost:3000/api/v2/users/'  # Ajusta la URL de la API
 
+    if request.method == 'POST':
+        FormInPer = FormularioInicioPersona(request.POST)
+        if FormInPer.is_valid():
+            # Obtén las credenciales del formulario
+            email = FormInPer.cleaned_data['email']
+            password = FormInPer.cleaned_data['password']
+
+            # Realiza la solicitud a la API para autenticar al usuario
+            api_data = {'email': email, 'password': password}
+            api_response = requests.post(URL_API, data=api_data)
+
+            if api_response.status_code == 200:
+                # La API ha autenticado al usuario, ahora intenta iniciar sesión en Django
+                UserPer = authenticate(email=email, password=password)
+
+                if UserPer is not None:
+                    login(request, UserPer)
+                    return redirect('usuario')
+                else:
+                    return render(request, 'login_per.html', {
+                        'form': FormInPer, 'error': 'Error al autenticar al usuario en Django'
+                    })
+            else:
+                # La API no pudo autenticar al usuario
+                return render(request, 'login_per.html', {
+                    'form': FormInPer, 'error': 'Credenciales no válidas'
+                })
+        else:
+            # El formulario no es válido
+            return render(request, 'login_per.html', {
+                'form': FormInPer, 'error': 'El formulario no es válido'
+            })
+
+    elif request.method == 'GET':
+        FormInPer = FormularioInicioPersona()
+        return render(request, 'login_per.html', {'form': FormInPer})
+
+    else:
+        # Devuelve una respuesta de error para cualquier otro caso
+        return HttpResponseBadRequest('Método no permitido')
+    
 def login_emp (request):
     return render(request, 'login_emp.html')
 
