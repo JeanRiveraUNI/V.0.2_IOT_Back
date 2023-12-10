@@ -34,6 +34,7 @@ mongoose.connect(
          console.error("Error connecting to MongoDB Atlas:", err);
     }
 );
+//actualizacion 10/12
 
 
 //Server
