@@ -20,8 +20,8 @@ from Home import views
 
 urlpatterns = [
     path('', views.Home , name='Home'),
-    path('login/persona', views.login_per , name='login_persona'),
-    path("login/empresa", views.login_emp , name="login_empresa"),
+    path('login/persona', views.login_per , name='login_per'),
+    path("login/empresa", views.login_emp , name="login_emp"),
     path('registro/persona', views.registro_per, name='registro_persona'),
     path("registro/empresa", views.registro_emp, name="registro_empresa"),
     path('usuario/', views.Users , name='usuario'),

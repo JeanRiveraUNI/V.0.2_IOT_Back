@@ -27,7 +27,8 @@ const getOneUser = async (req, res) => {
 const createNewUser = async (req, res) => {
     const body = req.body;
     if (
-        !body.name ||
+        !body.username ||
+        !body.rut ||
         !body.password ||
         !body.email ||
         !body.role
@@ -35,7 +36,8 @@ const createNewUser = async (req, res) => {
         return;
     }
     const newUser = {
-        name: body.name,
+        username: body.username,
+        rut: body.rut,
         password: body.password,
         email: body.email,
         role: body.role,

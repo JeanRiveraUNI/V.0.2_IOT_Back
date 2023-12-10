@@ -11,11 +11,11 @@ const getOneUser = (userId) => {
     const user = User.getOneUser(userId); // Corregir: Debe ser getOneUser en lugar de getAllUsers
     return user;
 };
-
 // crear un usuario
 const createNewUser = (newUser) => {
     const userToInsert = {
-        name: newUser.name,
+        username: newUser.username,
+        rut: newUser.rut,
         password: newUser.password,
         email: newUser.email,
         role: newUser.role,
