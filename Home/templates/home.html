@@ -106,10 +106,18 @@
                         <a href="/salir">Cerrar Sesion</a>
                     </div>
                     {% else %}
-                    <button class="dropbtn">Inicio de Sesión</button>
+                    <button class="dropbtn">Has Click Aqui!</button>
                     <div class="dropdown-content">
-                        <a href="/login">Iniciar Sesión</a>
-                        <a href="/registro">Crear Cuenta</a>
+                        <div class="user-type">
+                            <text>¿Qué tipo de usuario eres?</text>
+                            <a href="/login/persona">Persona</a>
+                            <a href="/login/empresa">Empresa</a>
+                        </div>
+                        <div class="user-type">
+                            <text>¿No tienes cuenta? Unete</text>
+                            <a href="/registro/persona">Persona</a>
+                            <a href="/registro/empresa">Empresa</a>
+                        </div>
                     </div>
                     {% endif %}
                 </div>

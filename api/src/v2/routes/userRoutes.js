@@ -9,3 +9,6 @@ router
     .put('/:userId', userController.updateOneUser)
     .delete('/:userId', userController.deleteOneUser);
 module.exports = router;
+
+// rutas registro de usuarior
+//router.post('/registro', (req, res) => {
