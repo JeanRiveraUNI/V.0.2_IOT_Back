@@ -97,7 +97,7 @@
     </style>
 </head>
 <body>
-    <form method="POST" action="{% url 'registro_per' %}" autocomplete="on">
+    <form method="POST" autocomplete="on">
         {% csrf_token %}
         <h2>Crear Cuenta</h2>
         <div class="switch-container">
@@ -105,6 +105,7 @@
             <a href="/registro/empresa">Empresa</a>
         </div>
         <h3>Persona</h3>
+        
         <label for="username">Nombre de usuario</label>
         <input type="text" name="username" id="username" placeholder="Nombre de usuario" required>
         <label for="email">Correo electrónico</label>

@@ -8,7 +8,8 @@ const userController = require('../../controllers/userController');
 router
     .get('/', userController.getAllUsers)
     .get('/:userId', userController.getOneUser)
-    .post('/', userController.createNewUser)
+    .post('/createPersona', userController.createNewUserPer)
+    .post('/createEmpresa', userController.createNewUserEmp)
     .put('/:userId', userController.updateOneUser)
     .delete('/:userId', userController.deleteOneUser)
 

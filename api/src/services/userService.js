@@ -11,8 +11,19 @@ const getOneUser = (userId) => {
     const user = User.getOneUser(userId); // Corregir: Debe ser getOneUser en lugar de getAllUsers
     return user;
 };
-// crear un usuario
-const createNewUser = (newUser) => {
+// crear un usuario persona
+const createNewUserPer = (newUser) => {
+    const userToInsert = {
+        username: newUser.username,
+        password: newUser.password,
+        email: newUser.email,
+        role: newUser.role,
+    };
+    const createdUser = User.createNewUserPer(userToInsert);
+    return createdUser;
+};
+// crear un usuario empresa
+const createNewUserEmp = (newUser) => {
     const userToInsert = {
         username: newUser.username,
         rut: newUser.rut,
@@ -20,7 +31,7 @@ const createNewUser = (newUser) => {
         email: newUser.email,
         role: newUser.role,
     };
-    const createdUser = User.createNewUser(userToInsert);
+    const createdUser = User.createNewUserEmp(userToInsert);
     return createdUser;
 };
 // actualizar un usuario
@@ -65,7 +76,8 @@ const authenticate = (username, password) => {
 module.exports = {
     getAllUsers,
     getOneUser,
-    createNewUser,
+    createNewUserPer,
+    createNewUserEmp,
     updateOneUser,
     deleteOneUser,
     authenticate,

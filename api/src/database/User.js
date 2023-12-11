@@ -20,8 +20,18 @@ const getOneUser = async (userId) => {
         throw error;
     }
 };
-// crear un usuario
-const createNewUser = async (newUser) => {
+// crear un usuario persona
+const createNewUserPer = async (newUser) => {
+    try {
+        const user = await userSchema.create(newUser);
+        return user;
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+    }
+};
+// crear un usuario empresa
+const createNewUserEmp = async (newUser) => {
     try {
         const user = await userSchema.create(newUser);
         return user;
@@ -67,7 +77,8 @@ const authenticate = async (userId, password) => {
 module.exports = {
     getAllUsers,
     getOneUser,
-    createNewUser,
+    createNewUserPer,
+    createNewUserEmp,
     updateOneUser,
     deleteOneUser,
     authenticate,

@@ -23,8 +23,34 @@ const getOneUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-// crear un usuario
-const createNewUser = async (req, res) => {
+// crear un usuario persona
+const createNewUserPer = async (req, res) => {
+    const body = req.body;
+    if (
+        !body.username ||
+        !body.password ||
+        !body.email ||
+        !body.role
+    ) {
+        return;
+    }
+    const newUser = {
+        username: body.username,
+        password: body.password,
+        email: body.email,
+        role: body.role,
+    };
+    try {
+        const createdUser = await userService.createNewUserPer(newUser);
+        console.log('Usuario creado:', createdUser);
+        res.status(201).send({status: 'OK', data: createdUser});
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+};
+// crear un usuario empresa 
+const createNewUserEmp = async (req, res) => {
     const body = req.body;
     if (
         !body.username ||
@@ -43,7 +69,7 @@ const createNewUser = async (req, res) => {
         role: body.role,
     };
     try {
-        const createdUser = await userService.createNewUser(newUser);
+        const createdUser = await userService.createNewUserEmp(newUser);
         console.log('Usuario creado:', createdUser);
         res.status(201).send({status: 'OK', data: createdUser});
     } catch (error) {
@@ -116,7 +142,8 @@ const authenticate = async (req, res) => {
 module.exports = {
     getAllUsers,
     getOneUser,
-    createNewUser,
+    createNewUserPer,
+    createNewUserEmp,
     updateOneUser,
     deleteOneUser,
     //authenticate,
