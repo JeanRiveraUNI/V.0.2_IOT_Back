@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
 }, {
     versionKey: false,
 });
-/*
+
 // Antes de guardar el usuario, hasheamos la contraseña y actualizamos la fecha de creación
 userSchema.pre('save', async function (next) {
     try {
@@ -56,5 +56,5 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
-*/
+
 module.exports = mongoose.model('User', userSchema);

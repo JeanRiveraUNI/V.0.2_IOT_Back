@@ -89,7 +89,8 @@ const deleteOneUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-
+// autenticar un usuario
+/*
 const authenticate = async (req, res) => {
     const { body } = req;
     if (!body.email || 
@@ -111,14 +112,12 @@ const authenticate = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 }
-
-
-
+*/
 module.exports = {
     getAllUsers,
     getOneUser,
     createNewUser,
     updateOneUser,
     deleteOneUser,
-    authenticate,
+    //authenticate,
 };

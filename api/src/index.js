@@ -23,6 +23,11 @@ app.use("/api/v2/tasks", v2taskRouter);
 //routes users
 app.use('/api/v2/users', v2userRouter);
 
+//routes authentication
+if (!process.env.JWT_SECRET) {
+    console.error('la variable JWT_SECRET no está configurada');
+    process.exit(1);
+}
 
 //MongoDB connection
 mongoose.connect(
