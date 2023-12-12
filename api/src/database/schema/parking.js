@@ -15,7 +15,12 @@ const parkingSchema = new mongoose.Schema({
     },
     available: {
         type: Number,
-        require: true},
+        require: true
+    },
+    assignedTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        default: null },
     });
 
     const Parking = mongoose.model('Parking', parkingSchema);

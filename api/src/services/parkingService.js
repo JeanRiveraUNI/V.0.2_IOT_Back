@@ -13,9 +13,30 @@ async function createParking(parkingData) {
     return await parking.save(); 
 }
 
-// funciones segun necesidad
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+async function getParkingById(parkingId) {
+    return await Parking.findById(parkingId);
+}
+
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+
+async function updateParkingById(parkingId, newData) {
+    return await Parking.findByIdAndUpdate(parkingId, newData, { new: true });
+}
+
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+async function deleteParkingById(parkingId) {
+    return await Parking.findByIdAndDelete(parkingId);
+}
 
 module.exports = {
     getAllParkings,
     createParking,
+    getParkingById,
+    updateParkingById,
+    deleteParkingById
 };
+

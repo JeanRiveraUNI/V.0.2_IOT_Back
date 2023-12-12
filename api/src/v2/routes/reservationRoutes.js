@@ -4,7 +4,9 @@ const reservationController = require('../../controllers/reservationController')
 
 router.get('/', reservationController.getAllReservations);
 router.post('/', reservationController.createReservation);
-// aqui van las rutas segun necesidad
+router.get('/:reservationId', reservationController.getReservationById);
+router.put('/:reservationId', reservationController.updateReservationById);
+router.delete('/:reservationId', reservationController.deleteReservationById);
 
 module.exports = router;
 

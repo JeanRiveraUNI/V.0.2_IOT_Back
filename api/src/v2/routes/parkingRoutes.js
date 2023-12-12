@@ -5,6 +5,8 @@ const parkingController = require('../../controllers/parkingController');
 
 router.get('/', parkingController.getAllParkings);
 router.post('/', parkingController.createParking);
-// aqui van las rutas segun necesidad
+router.get('/:parkingId', parkingController.getParkingById);
+router.put('/:parkingId', parkingController.updateParkingById);
+router.delete('/:parkingId', parkingController.deleteParkingById);
 
 module.exports = router;

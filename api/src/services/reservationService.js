@@ -13,9 +13,28 @@ async function createReservation(reservationData) {
     return await reservation.save(); 
 }
 
-// funciones segun necesidad
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+async function getReservationById(reservationId) {
+    return await Reservation.findById(reservationId);
+}
+
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+async function updateReservationById(reservationId, newData) {
+    return await Reservation.findByIdAndUpdate(reservationId, newData, { new: true });
+}
+
+// esta funcion es la que se llama desde el controlador
+// y es la que se exporta
+async function deleteReservationById(reservationId) {
+    return await Reservation.findByIdAndDelete(reservationId);
+}
 
 module.exports = {
     getAllReservations,
     createReservation,
+    getReservationById,
+    updateReservationById,
+    deleteReservationById
 };

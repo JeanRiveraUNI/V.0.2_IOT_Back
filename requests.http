@@ -45,3 +45,77 @@ Content-Type: application/json
     "email": "correo@correo.cl",
     "password": "email_1"
 }
+
+###
+GET http://localhost:3000/api/v2/parkings HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+POST http://localhost:3000/api/v2/parkings HTTP/1.1
+Content-Type: application/json
+ 
+{
+  "name": "Inacap",
+  "location": "Av. Apoquindo 7282, Las Condes, Región Metropolitana",
+  "capacity": 80,
+  "available": 45
+}
+
+###
+GET http://localhost:3000/api/v2/parkings/65782194a3ea2d1011c6d938 HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+PUT http://localhost:3000/api/v2/parkings/65782194a3ea2d1011c6d938 HTTP/1.1
+Content-Type: application/json
+  
+{
+  "available": 45
+}
+
+###
+DELETE http://localhost:3000/api/v2/parkings/65782194a3ea2d1011c6d938 HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+GET http://localhost:3000/api/v2/reservations HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+POST http://localhost:3000/api/v2/reservations HTTP/1.1
+Content-Type: application/json
+
+{
+  "user": "65778293008771f8b53d409d",
+  "parking": "657828f8c7516d8f020053c4",
+  "startTime": "2023-12-31T10:00:00.000Z",
+  "endTime": ""
+}
+
+###
+GET http://localhost:3000/api/v2/reservations/657829dc2bf6081060548c17 HTTP/1.1
+Content-Type: application/json
+  
+{}
+
+###
+PUT http://localhost:3000/api/v2/reservations/657829dc2bf6081060548c17 HTTP/1.1
+Content-Type: application/json
+  
+{
+    "endTime": "2023-12-31T11:20:30.000Z"
+}
+
+###
+DELETE http://localhost:3000/api/v2/reservations/657829dc2bf6081060548c17 HTTP/1.1
+Content-Type: application/json
+  
+{}

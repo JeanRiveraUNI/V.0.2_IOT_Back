@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const reservationSchema = new mongoose.Schema({
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
+        ref: 'email',
         required: true 
     },
     parking: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Parking', 
+        ref: 'location', 
         required: true 
     },
     startTime: {
@@ -17,7 +17,7 @@ const reservationSchema = new mongoose.Schema({
     },
     endTime: {
         type: Date,
-        required: true },
+        default: null},
     });
 
     const Reservation = mongoose.model('Reservation', reservationSchema);
