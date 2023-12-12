@@ -1,11 +1,71 @@
-<h1> Usuario Persona</h1>
+<!DOCTYPE html>
+{%load static%}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página de Usuario</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .acciones {
+            margin-top: 20px;
+        }
+
+        .boton-descargar,
+        .boton-agregar,
+        .boton-eliminar {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .boton-descargar {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .boton-agregar,
+        .boton-eliminar {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+        }
+
+        .panel-vehiculos {
+            margin-top: 20px;
+        }
+
+        #lista-vehiculos {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #lista-vehiculos li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 
@@ -32,6 +92,23 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+    function agregarVehiculo(tipo) {
+        // Lógica para agregar un vehículo a la lista
+        var listaVehiculos = document.getElementById('lista-vehiculos');
+        var nuevoVehiculo = document.createElement('li');
+        nuevoVehiculo.textContent = 'Nuevo vehículo - Tipo: ' + tipo;
+        listaVehiculos.appendChild(nuevoVehiculo);
+    }
+
+    function eliminarVehiculo() {
+        // Lógica para eliminar un vehículo de la lista
+        var listaVehiculos = document.getElementById('lista-vehiculos');
+        var ultimoVehiculo = listaVehiculos.lastElementChild;
+        if (ultimoVehiculo) {
+            listaVehiculos.removeChild(ultimoVehiculo);
+        }
+    }
+</script>
 </body>
 </html>
