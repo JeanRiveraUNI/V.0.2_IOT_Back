@@ -115,8 +115,18 @@ const deleteOneUser = async (req, res) => {
         res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 };
-// autenticar un usuario
 /*
+// autenticar un usuario
+const auth_Persona = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await userServise.auth_Persona({ email });
+        if (!user) {
+            return res.status(401).json({ message: 'El usuario no existe' });
+        }
+        const isPasswordValid = await auth_compare(password, user.password);
+    }
+}
 const authenticate = async (req, res) => {
     const { body } = req;
     if (!body.email || 

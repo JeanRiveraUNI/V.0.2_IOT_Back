@@ -1,0 +1,37 @@
+<h1> Usuario Persona</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página de Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Bienvenido a tu Página de Usuario</h1>
+
+    <div class="acciones">
+        <a href="#" class="boton-descargar">Descargar la App</a>
+        <button class="boton-agregar" onclick="agregarVehiculo('auto')">Agregar Auto</button>
+        <button class="boton-agregar" onclick="agregarVehiculo('moto')">Agregar Moto</button>
+        <button class="boton-agregar" onclick="agregarVehiculo('bicicleta')">Agregar Bicicleta</button>
+        <button class="boton-agregar" onclick="agregarVehiculo('scooter')">Agregar Scooter</button>
+    </div>
+
+    <div class="panel-vehiculos">
+        <h2>Vehículos Agregados</h2>
+        <ul id="lista-vehiculos">
+            <!-- La lista de vehículos se mostrará aquí -->
+        </ul>
+    </div>
+
+    <div class="acciones">
+        <button class="boton-eliminar" onclick="eliminarVehiculo()">Eliminar Vehículo</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

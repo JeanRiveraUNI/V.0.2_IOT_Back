@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../../database/schema/userSchema');
+//const jwt = require('jsonwebtoken');
+//const bcrypt = require('bcryptjs');
+//const User = require('../../database/schema/userSchema');
 const userController = require('../../controllers/userController');
 
 router
@@ -13,7 +13,8 @@ router
     .put('/:userId', userController.updateOneUser)
     .delete('/:userId', userController.deleteOneUser)
 
-    // Authentication
+
+    /*
     .get('/authenticate', async (req, res) => {
         const { email, password } = req.body;
         try {
@@ -35,5 +36,6 @@ router
         }
     }
 );
+*/
 
 module.exports = router;

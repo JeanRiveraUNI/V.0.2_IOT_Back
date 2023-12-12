@@ -1,8 +1,7 @@
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login, logout, authenticate 
 from .forms import FormularioCrearPersona, FormularioCrearEmpresa, FormularioInicioPersona, FormularioIncioEmpresa
 
 import requests
@@ -11,9 +10,6 @@ import requests
 # Create your views here.
 def Home(request):
     return render(request, 'home.html')
-
-def Users(request):
-    return render(request, 'user.html')
 
 def signout(request):
     logout(request)
@@ -93,50 +89,106 @@ def registro_emp (request):
     else:
         # Devuelve una respuesta de error para cualquier otro caso
         return HttpResponseBadRequest('Método no permitido')
-
-# incio de sesion para persona
-def login_per(request):
-    # Ajusta la URL de la API
-    URL_API = 'http://localhost:3000/api/v2/users/authenticate/'
-
-    if request.method == 'POST':
-        FormInPer = FormularioInicioPersona(request.POST)
-        if FormInPer.is_valid():
-            # Obtén las credenciales del formulario
-            email = FormInPer.cleaned_data['email']
-            password = FormInPer.cleaned_data['password']
-
-            # Realiza la solicitud a la API para autenticar al usuario
-            api_data = {'email': email, 'password': password}
-            api_response = requests.post(URL_API, data=api_data)
-
-            if api_response.status_code == 200:
-                # La API ha autenticado al usuario, ahora intenta iniciar sesión en Django
-                user_data = api_response.json()['user']
-                UserPer = authenticate(request, username=user_data['email'], password=password)
-
-                if UserPer is not None:
-                    login(request, UserPer)
-                    return redirect('usuario')
-                else:
-                    return render(request, 'login_per.html', {
-                        'form': FormInPer, 'error': 'Error al iniciar sesión en Django'
-                    })
-            else:
-                # La API no pudo autenticar al usuario
-                return render(request, 'login_per.html', {
-                    'form': FormInPer, 'error': 'Credenciales no válidas'
-                })
-        else:
-            # El formulario no es válido
-            return render(request, 'login_per.html', {
-                'form': FormInPer, 'error': 'El formulario no es válido'
-            })
-    else:
-        # Manejar la petición GET según sea necesario
-        FormInPer = FormularioInicioPersona()
-        return render(request, 'login_per.html', {'form': FormInPer})
     
-def login_emp (request):
-    return render(request, 'login_emp.html')
+    
+def login_per(request):
+    if request.method == 'POST':
+        form_login_per = FormularioInicioPersona(request.POST)
+        if form_login_per.is_valid():
+            email = form_login_per.cleaned_data['email']
+            password = form_login_per.cleaned_data['password']
 
+            api_url = 'http://localhost:3000/api/v2/users/'
+            api_params = {
+                'email': email,
+                'password': password
+            }
+
+            try:
+                api_response = requests.get(api_url, params=api_params)
+                api_response.raise_for_status()  # Lanza una excepción para errores HTTP (4xx, 5xx)
+                
+                response_data = api_response.json()
+                if response_data['status'] == 'OK':
+                    user_list = response_data['data']
+
+                    # Realiza la lógica de autenticación según la respuesta de la API
+                    authenticated_user = next((user for user in user_list if user['email'] == email and user['password'] == password), None)
+
+                    if authenticated_user:
+                        # Aquí puedes manejar la autenticación en tu sistema Django
+                        return redirect('usuario_per')
+                    else:
+                        print('Usuario y/o contraseña no válidos')
+                        return render(request, 'login_per.html', {'error': 'Usuario y/o contraseña no válidos'})
+                else:
+                    print('Error en la respuesta de la API')
+                    return render(request, 'login_per.html', {'error': 'Error en la respuesta de la API'})
+            
+            except requests.RequestException as e:
+                print(f"Error en la solicitud a la API: {e}")
+                return render(request, 'login_per.html', {'error': 'Error en la autenticación'})
+        
+        else:
+            print(form_login_per.errors)
+            return render(request, 'login_per.html', {'error': 'Usuario y/o contraseña no válidos'})
+    
+    else:
+        form_login_per = FormularioInicioPersona()
+        return render(request, 'login_per.html', {'form': form_login_per})
+
+def login_emp(request):
+    if request.method == 'POST':
+        form_login_emp = FormularioIncioEmpresa(request.POST)
+        if form_login_emp.is_valid():
+            rut = form_login_emp.cleaned_data['rut']
+            password = form_login_emp.cleaned_data['password']
+
+            api_url = 'http://localhost:3000/api/v2/users/'
+            api_params = {
+                'rut': rut,
+                'password': password
+            }
+
+            try:
+                api_response = requests.get(api_url, params=api_params)
+                api_response.raise_for_status()  # Lanza una excepción para errores HTTP (4xx, 5xx)
+
+                response_data = api_response.json()
+                if response_data['status'] == 'OK':
+                    user_list = response_data['data']
+
+                    # Realiza la lógica de autenticación según la respuesta de la API
+                    authenticated_user = next(
+                        (user for user in user_list if user.get('rut') == rut and user['password'] == password),
+                        None
+                    )
+
+                    if authenticated_user:
+                        # Aquí puedes manejar la autenticación en tu sistema Djangod
+                        return redirect('usuario_emp')
+                    else:
+                        print('Usuario y/o contraseña no válidos')
+                        return render(request, 'login_emp.html', {'error': 'Usuario y/o contraseña no válidos'})
+                else:
+                    print('Error en la respuesta de la API')
+                    return render(request, 'login_emp.html', {'error': 'Error en la respuesta de la API'})
+
+            except requests.RequestException as e:
+                print(f"Error en la solicitud a la API: {e}")
+                return render(request, 'login_emp.html', {'error': 'Error en la autenticación'})
+
+        else:
+            print(form_login_emp.errors)
+            return render(request, 'login_emp.html', {'error': 'Usuario y/o contraseña no válidos'})
+
+    else:
+        form_login_emp = FormularioIncioEmpresa()
+        return render(request, 'login_emp.html', {'form': form_login_emp})
+    
+                    
+def UserPer(request):
+    return render(request, 'user_per.html')
+
+def UserEmp(request):
+    return render(request, 'user_emp.html')
