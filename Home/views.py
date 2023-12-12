@@ -184,8 +184,7 @@ def login_emp(request):
 
     else:
         form_login_emp = FormularioIncioEmpresa()
-        return render(request, 'login_emp.html', {'form': form_login_emp})
-    
+        return render(request, 'login_emp.html', {'form': form_login_emp})  
                     
 def UserPer(request):
     return render(request, 'user_per.html')

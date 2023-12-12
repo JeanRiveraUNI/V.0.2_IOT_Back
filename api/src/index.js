@@ -1,9 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+// import rutas 
 const v1workoutRouter = require('./v1/routes/workoutRoutes');
 const v2taskRouter = require('./v2/routes/taskRoutes');
 const v2userRouter = require('./v2/routes/userRoutes');
+const v2parkingRouter = require('./v2/routes/parkingRoutes');
+const v2reservationRouter = require('./v2/routes/reservationRoutes');
+
 require('dotenv').config();
 
 const app = express();
@@ -23,11 +28,19 @@ app.use("/api/v2/tasks", v2taskRouter);
 //routes users
 app.use('/api/v2/users', v2userRouter);
 
+//routes parkings
+app.use('/api/v2/parkings', v2parkingRouter);
+
+//routes reservations
+app.use('/api/v2/reservations', v2reservationRouter);
+
 //routes authentication
+/*
 if (!process.env.JWT_SECRET) {
     console.error('la variable JWT_SECRET no está configurada');
     process.exit(1);
 }
+*/
 
 //MongoDB connection
 mongoose.connect(
