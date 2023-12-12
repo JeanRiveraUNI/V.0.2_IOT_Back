@@ -30,7 +30,7 @@
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="index.html">
-                                <img src="assets/images/logo/white-logo.svg" alt="Logo">
+                                <img src= "{% static 'img/logo/logo.svg' %}" alt="Logo">
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -46,58 +46,25 @@
                                             aria-label="Toggle navigation">Inicio</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#features" class="page-scroll"
-                                            aria-label="Toggle navigation">Estacionamientos</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="javascript:void(0)" aria-label="Toggle navigation">Servicios</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#pricing" class="page-scroll"
-                                            aria-label="Toggle navigation">Pricing</a>
+                                        <a href="#features" class="page-scroll" aria-label="Toggle navigation">Estacionamientos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Team</a>
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Contacto</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Blog</a>
+                                            aria-expanded="false" aria-label="Toggle navigation">Iniciar Sesíon</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="javascript:void(0)">Blog Grid Sidebar</a>
-                                            </li>
-                                            <li class="nav-item"><a href="javascript:void(0)">Blog Single</a></li>
-                                            <li class="nav-item"><a href="javascript:void(0)">Blog Single
-                                                    Sibebar</a></li>
+                                            <li class="nav-item"><a href="/login/persona" >Persona</a></li>
+                                            <li class="nav-item"><a href="/login/empresa">Empresa</a></li>
                                         </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Contact</a>
                                     </li>
                                 </ul>
                             </div> 
-                            <!-- navbar collapse -->
-
-                            <div class="button add-list-button">
-                                <div class="dropdown">
-                                    {% if user.is_authenticated %}
-                                    <button class="dropbtn">Perfil</button>
-                                    <div class="dropdown-content">
-                                        <a href="/salir">Cerrar Sesion</a>
-                                    </div>
-                                    {% else %}
-                                    <button class="dropbtn">Iniciar Sesion Aqui!</button>
-                                    <div class="dropdown-content">
-                                        <div class="user-type">
-                                            <text>Que Tipo de Cuenta Eres: </text>
-                                            <a href="/login/persona">Persona</a>
-                                            <a href="/login/empresa">Empresa</a>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-
                         </nav>
                         <!-- End Navbar -->
                     </div>
@@ -112,9 +79,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-12 col-12">
                     <div class="hero-content">
-                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">A powerful app for your business.</h1>
-                        <p class="wow fadeInLeft" data-wow-delay=".6s">From open source to pro services, Piqes helps you
-                            to build, deploy, test, and monitor apps.</p>
+                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">¡Enciende el motor de tu día con nosotros!</h1>
+                        <p class="wow fadeInLeft" data-wow-delay=".6s">Reserva tu espacio y aparca tus preocupaciones.</p>
                         <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
                             <a href="javascript:void(0)" class="btn btn-alt"><i class="lni lni-play-store"></i> Google
@@ -425,7 +391,7 @@
                         <div class="single-footer f-about">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src= "{% static 'img/logo/logo_1.png' %}" alt="#">
+                                    <img src= "{% static 'img/logo/logo_1.svg' %}" alt="#">
                                 </a>
                             </div>
                             <p>Making the world a better place through constructing elegant hierarchies.</p>
@@ -595,8 +561,6 @@
     <footer>
         <p>&copy; 2023 Gestión de Cuentas de Usuarios</p>
     </footer>
-
-    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 
 </body>
 </html>

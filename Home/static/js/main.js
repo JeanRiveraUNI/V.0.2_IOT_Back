@@ -26,10 +26,10 @@ Author: GrayGrids
         var logo = document.querySelector('.navbar-brand img')
         if (window.pageYOffset > sticky) {
           header_navbar.classList.add("sticky");
-          logo.src = 'assets/images/logo/logo.svg';
+          logo.src = '../static/img/logo/logo.svg'
         } else {
           header_navbar.classList.remove("sticky");
-          logo.src = 'assets/images/logo/white-logo.svg';
+          logo.src = '../static/img/logo/logo.svg';
         }
 
         // show or hide the back-top-top button
@@ -78,7 +78,7 @@ Author: GrayGrids
     });
 
     // WOW active
-    new WOW().init();
+    //new WOW().init();
 
     let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
     filterButtons.forEach(e =>
@@ -104,12 +104,4 @@ Author: GrayGrids
             this.classList.add("active");
         };
     };
-
-    //===== mobile-menu-btn
-    let navbarToggler = document.querySelector(".mobile-menu-btn");
-    navbarToggler.addEventListener('click', function () {
-        navbarToggler.classList.toggle("active");
-    });
-
-
 })();
