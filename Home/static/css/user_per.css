@@ -1,0 +1,61 @@
+body {
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: #888;
+    overflow-x: hidden;
+    font-size: 15px;
+  }
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.acciones {
+    margin-top: 20px;
+}
+
+.boton-descargar,
+.boton-agregar,
+.boton-eliminar {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.boton-descargar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.boton-agregar,
+.boton-eliminar {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+
+.panel-vehiculos {
+    margin-top: 20px;
+}
+
+#lista-vehiculos {
+    list-style-type: none;
+    padding: 0;
+}
+
+#lista-vehiculos li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}

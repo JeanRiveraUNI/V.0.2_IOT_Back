@@ -5,110 +5,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página de Usuario</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .acciones {
-            margin-top: 20px;
-        }
-
-        .boton-descargar,
-        .boton-agregar,
-        .boton-eliminar {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        .boton-descargar {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-        }
-
-        .boton-agregar,
-        .boton-eliminar {
-            background-color: #008CBA;
-            color: white;
-            border: none;
-        }
-
-        .panel-vehiculos {
-            margin-top: 20px;
-        }
-
-        #lista-vehiculos {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #lista-vehiculos li {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <title>InnovaPark</title>
+    <link type="text/css" href= "{% static 'css/user_per.css' %}" rel="stylesheet">
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar-collapse">
+   
+    <!-- preloader section -->
+<div class="preloader">
+	<div class="sk-spinner sk-spinner-wordpress">
+       <span class="sk-inner-circle"></span>
+     </div>
+</div>
 
-<div class="container">
-    <h1>Bienvenido a tu Página de Usuario</h1>
+<!-- header section -->
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h1 class="tm-title bold shadow">{{ username }}</h1>
+				<h1 class="white bold shadow">Siente la innovación en cada reserva con InnovaPark.</h1>
+                <hr>
+			</div>
+		</div>
+	</div>
+</header>
 
+<!-- education and languages -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="form-group">
+                <fieldset>
+                    <legend >Búsca tu Estacionamientos</legend>
+                        <form method="post">
+                            {% csrf_token %}
+                            <ul>
+                                <li>
+                                    <label for="location">Ubicación del estacionamiento:</label>
+                                    <input type="text" id="location" name="location" required>
+                                </li>
+                                <br>
+                                <li>
+                                    <label for="startTime">Fecha y hora de inicio:</label>
+                                    <input type="datetime-local" id="startTime" name="startTime" required>
+                                </li>
+                                <br>
+                                <li>
+                                    <label for="duration">Duración de la reserva (en horas):</label>
+                                    <input type="number" id="duration" name="duration" required>
+                                </li>
+                            </ul>
+                            <button type="submit">Buscar Estacionamientos</button>
+                        </form>
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                        <legend>Resultados de la Búsqueda</legend>
+                        <div class="form-result">
+                            {% if search_results %}
+                        <ul>
+                            {% for result in search_results %}
+                            <li>{{ result.name }} - {{ result.location }} - Disponibilidad: {{ result.available }} plazas</li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>No se encontraron resultados para la búsqueda.</p>
+                        {% endif %}
+                    </div>    
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="profile-container">
+    <h1>Bienvenido</h1>
     <div class="acciones">
+        <h3>Descarga nuestra App</h3>
         <a href="#" class="boton-descargar">Descargar la App</a>
-        <button class="boton-agregar" onclick="agregarVehiculo('auto')">Agregar Auto</button>
-        <button class="boton-agregar" onclick="agregarVehiculo('moto')">Agregar Moto</button>
-        <button class="boton-agregar" onclick="agregarVehiculo('bicicleta')">Agregar Bicicleta</button>
-        <button class="boton-agregar" onclick="agregarVehiculo('scooter')">Agregar Scooter</button>
+    <selection class="profile-accion">
+        <img src="{% static 'img/user.png' %}" alt="Foto de perfil" class="profile__avatar">
+
+        <h2 class="profile__name">Nombre de Usuario</h2>
+        <p class="profile__web">www.mipagina.com</p>
+        <p class="profile__bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+    </selection>
     </div>
 
-    <div class="panel-vehiculos">
-        <h2>Vehículos Agregados</h2>
-        <ul id="lista-vehiculos">
-            <!-- La lista de vehículos se mostrará aquí -->
-        </ul>
-    </div>
-
-    <div class="acciones">
-        <button class="boton-eliminar" onclick="eliminarVehiculo()">Eliminar Vehículo</button>
-    </div>
 </div>
 
 <script>
-    function agregarVehiculo(tipo) {
-        // Lógica para agregar un vehículo a la lista
-        var listaVehiculos = document.getElementById('lista-vehiculos');
-        var nuevoVehiculo = document.createElement('li');
-        nuevoVehiculo.textContent = 'Nuevo vehículo - Tipo: ' + tipo;
-        listaVehiculos.appendChild(nuevoVehiculo);
-    }
-
-    function eliminarVehiculo() {
-        // Lógica para eliminar un vehículo de la lista
-        var listaVehiculos = document.getElementById('lista-vehiculos');
-        var ultimoVehiculo = listaVehiculos.lastElementChild;
-        if (ultimoVehiculo) {
-            listaVehiculos.removeChild(ultimoVehiculo);
-        }
-    }
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </script>
 </body>
 </html>

@@ -187,6 +187,9 @@ def login_emp(request):
         return render(request, 'login_emp.html', {'form': form_login_emp})  
                     
 def UserPer(request):
+    if request.method == 'POST':
+        form_seach_est = FormularioBuscarEstacionamiento(request.POST)
+
     return render(request, 'user_per.html')
 
 def UserEmp(request):
