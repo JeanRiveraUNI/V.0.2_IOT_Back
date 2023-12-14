@@ -81,28 +81,27 @@ http://www.templatemo.com/tm-467-easy-profile
 	<div class="row">
 		<div class="col-md-8 col-sm-12">
 			<div class="education">
-				<h2 class="white">
-                    Estacionamiento Disponibles
-                </h2>
-				<div class="education-content">
-                    <h4 class="education-title accent">
-                        Cerca de ti:
-                    </h4>
-                    <br>
-                    <div class="education-school">
-                        {% for parking in parkings_list %}
-                        <li class="lista-estacionamiento">
-                            Ubicacion: {{ parking.location }}
-                            <br>
-                            Disponibles: {{ parking.available }}
-                        </li>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-12">
+				<h2 class="white">Estacionamientos Disponibles</h2>
+					<div class="education-content">
+						<h4 class="education-title accent">
+                            Cerca de Ti:
+                        </h4>
+                        <br>
+							<div class="education-school">
+                                <div>
+                                    {% for parking in parkings_list %}
+                                        <li class="lista-estacionamiento">
+                                            <span class="ubicacion">Ubicación:</span> {{ parking.location }}<br>
+                                            <span class="disponibles">Disponibles:</span> {{ parking.available }}
+                                        </li>
+                                    {% endfor %}
+                                </div>
+							</div>
+                        </div>
+					</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-12">
 			<div class="languages">
 				<h2>Languages</h2>
 					<ul>
