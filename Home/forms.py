@@ -23,6 +23,6 @@ class FormularioIncioEmpresa(forms.Form):
     rut = forms.CharField(label='Rol Único Tributario', max_length=15)
     password = forms.CharField(label='Contraseña', max_length=100, widget=forms.PasswordInput)
 
-class FormularioBuscarEstacionamiento(forms.Form):
+class FormularioReservarEstacionamiento(forms.Form):
     location: forms.CharField(label='Ubicación', max_length=100)
     
