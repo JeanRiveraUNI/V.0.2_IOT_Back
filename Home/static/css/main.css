@@ -89,9 +89,9 @@ span,
 a {
   display: inline-block;
   text-decoration: none;
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 audio,
@@ -2857,7 +2857,7 @@ ol {
   font-size: 14px;
   background-color: #fff3;
   border-radius: 5px;
-  float: right;
+  display: inline-block;
   margin-right: 148px;
 }
 
@@ -2950,4 +2950,14 @@ ol {
 .footer .footer-newsletter .newsletter-form .button .btn:hover {
   color: #ff6b81;
   background-color: #fff;
+}
+
+/*=============================
+	Pricing Table CSS
+===============================*/
+
+.features-group {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }

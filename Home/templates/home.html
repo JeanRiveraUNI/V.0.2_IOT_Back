@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InnovaPark</title>
-    <link type="text/css" href= "{% static 'css/home.css' %}" rel="stylesheet">
     <link type="text/css" href= "{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link type="text/css" href= "{% static 'css/LineIcons.2.0.css' %}" rel="stylesheet">
     <link type="text/css" href= "{% static 'css/animate.css' %}" rel="stylesheet">
@@ -82,14 +81,14 @@
                         <h1 class="wow fadeInLeft" data-wow-delay=".4s">¡Enciende el motor de tu día con nosotros!</h1>
                         <p class="wow fadeInLeft" data-wow-delay=".6s">Reserva tu espacio y aparca tus preocupaciones.</p>
                         <div class="button wow fadeInLeft" data-wow-delay=".8s">
-                            <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
-                            <a href="javascript:void(0)" class="btn btn-alt"><i class="lni lni-play-store"></i> Google Play</a>
+                            <a href="https://www.apple.com/cl/store" class="btn"></i> App Store</a>
+                            <a href="https://play.google.com/store/games?hl=es_419&gl=US" class="btn btn-alt"></i> Google Play</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-12 col-12">
                     <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="{% static 'img/phone/phone.png' %}" alt="#">
+                        <img src="{% static 'img/phone/phone_1.png' %}" alt="#">
                     </div>
                 </div>
             </div>
@@ -103,74 +102,60 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">Features</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Your Experience Gets Better And Better Over Time.
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">Unete</h3>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">¿Por qué elegirnos?</h2>
                         </h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            En InnovaPark, ofrecemos dos tipos de cuentas diseñadas para adaptarse a tus necesidades: 
+                            Cuenta Personal y Cuenta Empresarial. 
+                            La Cuenta Personal es perfecta para usuarios que buscan reservar estacionamientos de forma fácil y rápida. 
+                            Mientras tanto, la Cuenta Empresarial es ideal para empresas que desean gestionar y asignar espacios de estacionamiento de manera eficiente para sus empleados. 
+                            Descubre la flexibilidad que ofrecemos y elige la cuenta que se ajuste mejor a tus requerimientos.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
-                        <i class="lni lni-cloud-upload"></i>
-                        <h3>Push to Deploy</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
+                <div class="features-group">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Feature -->
+                        <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
+                            <h3>Para Ti</h3>
+                            <p>
+                                Libera tu día con InnovaPark.
+                                <br> 
+                                🚗✨
+                                <br> 
+                                Reserva tu espacio fácilmente, aparca sin estrés.
+                                <br>
+                                ¡Crea tu cuenta y descubre una forma más simple de estacionar!</p>
+                                <br>
+                                <br>
+                                <div class="button">
+                                    <a href="registro/persona" class="btn">NO BUSQUES MAS!</a>
+                                </div>
+                            </div>
+                            <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Start Single Feature -->
+                            <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
+                                <h3>Para tu Empresa</h3>
+                                <p>Optimiza la gestión de estacionamientos para tu empresa con InnovaPark Empresarial.
+                                    <br> 
+                                    🏢✨ Simplifica la asignación, supervisión y aprovechamiento de espacios. 
+                                    <br>
+                                    Descubre una solución eficiente, crea una cuenta empresarial hoy mismo.</p>
+                                    <br>
+                                    <div class="button">
+                                        <a href="registro/empresa" class="btn">OPTIMIZA TU EMPRESA!</a>
+                                    </div>
+                                </div>
+                                
+                                <!-- End Single Feature -->
+                            </div>
+                        </div>
                     </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
-                        <i class="lni lni-lock"></i>
-                        <h3>SSL Certificates</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
-                        <i class="lni lni-reload"></i>
-                        <h3>Simple Queues</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
-                        <i class="lni lni-shield"></i>
-                        <h3>Advanced Security</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
-                        <i class="lni lni-cog"></i>
-                        <h3>Powerful API</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
-                        <i class="lni lni-layers"></i>
-                        <h3>Database Backups</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page at its layout.</p>
-                    </div>
-                    <!-- End Single Feature -->
                 </div>
             </div>
         </div>
@@ -183,8 +168,8 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                     <div class="title">
-                        <h2>Trusted by developers from over 80 planets</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                        <h2>Únete a nuestra creciente comunidad hoy mismo.</h2>
+                        <p>Más de 50 empresas ya disfrutan de la simplicidad de InnovaPark.</p>
                     </div>
                 </div>
             </div>
@@ -194,19 +179,19 @@
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
                                 <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span>%</h3>
-                                <p>satisfaction</p>
+                                <p>Satisfacción</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
-                                <h3 class="counter"><span id="secondo2" class="countup" cup-end="120">120</span>K</h3>
-                                <p>Happy Users</p>
+                                <h3 class="counter"><span id="secondo2" class="countup" cup-end="120">120</span>K+</h3>
+                                <p>Descargas en Play Store</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                                <h3 class="counter"><span id="secondo3" class="countup" cup-end="125">125</span>k+</h3>
-                                <p>Downloads</p>
+                                <h3 class="counter"><span id="secondo3" class="countup" cup-end="85">85</span>k+</h3>
+                                <p>Descargas en Apple Store</p>
                             </div>
                         </div>
                     </div>
@@ -222,10 +207,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">pricing</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Pricing Plan</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">Actualizate a nuestros planes</h3>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Elije Tu Plan</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            ¡Pronto disfrutarás de nuestros planes de suscripción diseñados para ofrecerte aún más ventajas en InnovaPark! 
+                            Estamos trabajando en nuevas funcionalidades para mejorar tu experiencia. 
+                            ¡Mantente atento para conocer más sobre nuestros emocionantes planes de suscripción cuando se activen!</p>
                     </div>
                 </div>
             </div>
@@ -235,25 +222,24 @@
                     <div class="single-table wow fadeInUp" data-wow-delay=".2s">
                         <!-- Table Head -->
                         <div class="table-head">
-                            <h4 class="title">Hobby</h4>
-                            <p>All the basics for starting a new business</p>
+                            <h4 class="title">Plan<br>Personal</h4>
+                            <p>¡Simplifica tu experiencia de estacionamiento con el Plan Personal de InnovaPark!</p>
                             <div class="price">
-                                <h2 class="amount">$12<span class="duration">/mo</span></h2>
+                                <h2 class="amount">Free<span class="duration">/CLP</span></h2>
                             </div>
                             <div class="button">
-                                <a href="javascript:void(0)" class="btn">Buy Hobby</a>
+                                <a href="registro/persona" class="btn">Lo Quiero!</a>
                             </div>
                         </div>
                         <!-- End Table Head -->
                         <!-- Start Table Content -->
                         <div class="table-content">
-                            <h4 class="middle-title">What's Included</h4>
+                            <h4 class="middle-title">Qué Incluye:</h4>
                             <!-- Table List -->
                             <ul class="table-list">
-                                <li><i class="lni lni-checkmark-circle"></i> Cras justo odio.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Dapibus ac facilisis in.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Morbi leo risus.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Potenti felis, in cras ligula.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Reservas rápidas y sencillas.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Notificaciones en tiempo real.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Soporte al Cliente Prioritario.</li>
                             </ul>
                             <!-- End Table List -->
                         </div>
@@ -266,25 +252,25 @@
                     <div class="single-table wow fadeInUp" data-wow-delay=".4s">
                         <!-- Table Head -->
                         <div class="table-head">
-                            <h4 class="title">Freelancer</h4>
-                            <p>All the basics for starting a new business</p>
+                            <h4 class="title">Plan<br>Empresarial</h4>
+                            <p>Optimiza la gestión de estacionamientos para tu empresa con el Plan Empresarial de InnovaPark.</p>
                             <div class="price">
-                                <h2 class="amount">$24<span class="duration">/mo</span></h2>
+                                <h2 class="amount">Free<span class="duration">/CLP</span></h2>
                             </div>
                             <div class="button">
-                                <a href="javascript:void(0)" class="btn">Buy Freelancer</a>
+                                <a href="registro/empresa" class="btn">Lo Quiero!</a>
                             </div>
                         </div>
                         <!-- End Table Head -->
                         <!-- Start Table Content -->
                         <div class="table-content">
-                            <h4 class="middle-title">What's Included</h4>
+                            <h4 class="middle-title">Qué Incluye:</h4>
                             <!-- Table List -->
                             <ul class="table-list">
-                                <li><i class="lni lni-checkmark-circle"></i> Cras justo odio.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Dapibus ac facilisis in.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Morbi leo risus.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Potenti felis, in cras ligula.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Asignación eficiente de espacios.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Supervisión centralizada de reservas.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Informes detallados de uso.</li>
+                                <li><i class="lni lni-checkmark-circle"></i> Soporte al Cliente Empresarial.</li>
                             </ul>
                             <!-- End Table List -->
                         </div>
