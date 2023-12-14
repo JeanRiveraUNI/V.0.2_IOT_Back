@@ -9,4 +9,7 @@ router.get('/:parkingId', parkingController.getParkingById);
 router.put('/:parkingId', parkingController.updateParkingById);
 router.delete('/:parkingId', parkingController.deleteParkingById);
 
+//----------------------------------------------------------------
+router.get('/estacionamiento/disponibles', parkingController.estacionamientoDisponibles);
+
 module.exports = router;

@@ -5,7 +5,14 @@ const Parking = require('../database/schema/parking');
 async function getAllParkings() {
     return await Parking.find();
 }
-
+// lista de estacionamientos disponibles
+const estacionamientoDisponible = async () => {
+    const listaDisponibles = Parking.find(
+        parking.location,
+        parking.available,
+    );
+    return listaDisponibles;
+};
 // esta funcion es la que se llama desde el controlador
 // y es la que se exporta
 async function createParking(parkingData) {
@@ -37,6 +44,7 @@ module.exports = {
     createParking,
     getParkingById,
     updateParkingById,
-    deleteParkingById
+    deleteParkingById,
+    estacionamientoDisponible,
 };
 

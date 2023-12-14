@@ -187,10 +187,35 @@ def login_emp(request):
         return render(request, 'login_emp.html', {'form': form_login_emp})  
                     
 def UserPer(request):
-    if request.method == 'POST':
-        form_seach_est = FormularioBuscarEstacionamiento(request.POST)
+    # Lista de estacionamientos
+    URL = 'http://localhost:3000/api/v2/parkings'
+    api_response = requests.get(URL)
 
-    return render(request, 'user_per.html')
+    try:
+        api_response.raise_for_status()  # Verificar si hay errores HTTP
+
+        response_data = api_response.json()
+
+        # Verificar si 'status' está en el diccionario
+        if 'status' in response_data and response_data['status'] == 'OK':
+
+            # Verificar si 'data' está en el diccionario
+            if 'data' in response_data:
+                parkings_list = response_data['data']
+                print(parkings_list)
+                return render(request, 'user_per.html', {'parkings_list': parkings_list})
+            else:
+                print('Error en la respuesta de la API: clave "data" no encontrada')
+                return render(request, 'user_per.html', {'error': 'Error en la respuesta de la API'})
+
+        else:
+            print('Error en la respuesta de la API: clave "status" no es "OK"')
+            return render(request, 'user_per.html', {'error': 'Error en la respuesta de la API'})
+
+    except requests.exceptions.RequestException as e:
+        print(f'Error al hacer la solicitud a la API: {e}')
+        return render(request, 'user_per.html', {'error': 'Error al hacer la solicitud a la API'})
+
 
 def UserEmp(request):
     return render(request, 'user_emp.html')

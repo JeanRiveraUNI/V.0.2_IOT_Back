@@ -64,6 +64,12 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3000/api/v2/parkings/estacionamiento/disponibles HTTP/1.1
+Content-Type: application/json
+ 
+{}
+
+###
 GET http://localhost:3000/api/v2/parkings/65782194a3ea2d1011c6d938 HTTP/1.1
 Content-Type: application/json
   

@@ -56,12 +56,24 @@ http://www.templatemo.com/tm-467-easy-profile
 		</div>
 		<div class="col-md-6 col-sm-12">
 			<div class="skills">
-				<h2 class="white">Estacionamiento Disponible!</h2>
-                <div class="form-group">
-                    
-			</div>
-		</div>
-	</div>
+				<h3 class="white">Estacionamiento Disponibles</h3>
+					<div class="progress">
+                        <ul>
+                            <ul>
+                                {% for parking in parkings_list %}
+                                    <li>
+                                        {{ parking.name }} -
+                                        {{ parking.location }}- 
+                                        {{ parking.capacity }} - 
+                                        {{ parking.available }}
+                                    </li>
+                                {% endfor %}
+                            </ul>                            
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>                                                                       
 </section>
 
 <!-- education and languages -->
@@ -69,18 +81,28 @@ http://www.templatemo.com/tm-467-easy-profile
 	<div class="row">
 		<div class="col-md-8 col-sm-12">
 			<div class="education">
-				<h2 class="white">Education</h2>
-					<div class="education-content">
-						<h4 class="education-title accent">New Web Design</h4>
-							<div class="education-school">
-								<h5>School of Media</h5><span></span>
-								<h5>2030 January - 2034 December</h5>
-							</div>
-						<p class="education-description">In lacinia leo sed quam feugiat, ac efficitur dui tristique. Ut venenatis, odio quis cursus egestas, nulla sem volutpat diam, ac dapibus nisl ipsum ut ipsum. Nunc tincidunt libero non magna placerat elementum.</p>
-					</div>
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-12">
+				<h2 class="white">
+                    Estacionamiento Disponibles
+                </h2>
+				<div class="education-content">
+                    <h4 class="education-title accent">
+                        Cerca de ti:
+                    </h4>
+                    <br>
+                    <div class="education-school">
+                        {% for parking in parkings_list %}
+                        <li class="lista-estacionamiento">
+                            Ubicacion: {{ parking.location }}
+                            <br>
+                            Disponibles: {{ parking.available }}
+                        </li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
 			<div class="languages">
 				<h2>Languages</h2>
 					<ul>

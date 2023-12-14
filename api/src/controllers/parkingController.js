@@ -5,12 +5,27 @@ const parkingService = require('../services/parkingService');
 // y luego enviar la respuesta
 async function getAllParkings(req, res) {
     try {
-        const parkings = await parkingService.getAllParkings();
-        res.json(parkings);
+        const allparkings = await parkingService.getAllParkings();
+        console.log('Datos obtenidos:', allparkings);
+        res.send({ status: 'OK', data: allparkings});
+
     } catch (error) {
-        res.status(500).json({ error : error.message });
+        console.error('Error al obtener todos los parkings:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
     }
 }
+// mostrar lista filtrada de parkings disponibles
+const estacionamientoDisponibles = async (req, res) => {
+    try {
+        const listaDisponibles = await parkingService.estacionamientoDisponible();
+        console.log('Datos obtenidos:', listaDisponibles);
+        res.send({ status: 'OK', data: listaDisponibles });
+
+    } catch (error) {
+        console.error('Error al obtener todos los parkings:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+};
 
 // esta funcion se encarga de llamar al servicio
 // para crear un nuevo parking
@@ -69,6 +84,7 @@ module.exports = {
     createParking,
     getParkingById,
     updateParkingById,
-    deleteParkingById
+    deleteParkingById,
+    estacionamientoDisponibles,
 };
 
