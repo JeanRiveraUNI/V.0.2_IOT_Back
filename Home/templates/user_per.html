@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 {%load static%}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>InnovaPark</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+<!-- 
+Easy Profile Template
+http://www.templatemo.com/tm-467-easy-profile
+-->
+	<!-- stylesheet css -->
+	<link type="text/css" href= "{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link type="text/css" href= "{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link type="text/css" href= "{% static 'css/user_per.css' %}" rel="stylesheet">
+    
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
-   
-    <!-- preloader section -->
+
+<!-- preloader section -->
 <div class="preloader">
-	<div class="sk-spinner sk-spinner-wordpress">
-       <span class="sk-inner-circle"></span>
-     </div>
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 </div>
 
 <!-- header section -->
@@ -22,79 +35,206 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h1 class="tm-title bold shadow">{{ username }}</h1>
-				<h1 class="white bold shadow">Siente la innovación en cada reserva con InnovaPark.</h1>
-                <hr>
+				<img src="images/tm-easy-profile.jpg" class="img-responsive img-circle tm-border" alt="templatemo easy profile">
+				<hr>
+				<h1 class="tm-title bold shadow">Hi, I am Julia</h1>
+				<h1 class="white bold shadow">Creative Director</h1>
 			</div>
 		</div>
 	</div>
 </header>
 
+<!-- about and skills section -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-6 col-sm-12">
+			<div class="about">
+				<h3 class="accent">Easy Profile</h3>
+				<h2>Bootstrap v3.3.5</h2>
+				<p>This easy HTML profile is brought to you by templatemo website. There are 4 color themes, <a href="index-green.html">Green</a>, <a href="index.html">Blue</a>, <a href="index-gray.html">Gray</a>, and <a href="index-orange.html">Orange</a>. Sed vitae dui in neque elementum tempor eu id risus. Phasellus sed facilisis lacus, et venenatis augue.</p>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="skills">
+				<h2 class="white">Skills</h2>
+				<strong>PHP MySQL</strong>
+				<span class="pull-right">70%</span>
+					<div class="progress">
+						<div class="progress-bar progress-bar-primary" role="progressbar" 
+                        aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+					</div>
+				<strong>UI/UX Design</strong>
+				<span class="pull-right">85%</span>
+					<div class="progress">
+						<div class="progress-bar progress-bar-primary" role="progressbar" 
+                        aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
+					</div>
+				<strong>Bootstrap</strong>
+				<span class="pull-right">95%</span>
+					<div class="progress">
+						<div class="progress-bar progress-bar-primary" role="progressbar" 
+                        aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;"></div>
+					</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- education and languages -->
 <section class="container">
 	<div class="row">
 		<div class="col-md-8 col-sm-12">
-			<div class="form-group">
-                <fieldset>
-                    <legend >Búsca tu Estacionamientos</legend>
-                        <form method="post">
-                            {% csrf_token %}
-                            <ul>
-                                <li>
-                                    <label for="location">Ubicación del estacionamiento:</label>
-                                    <input type="text" id="location" name="location" required>
-                                </li>
-                                <br>
-                                <li>
-                                    <label for="startTime">Fecha y hora de inicio:</label>
-                                    <input type="datetime-local" id="startTime" name="startTime" required>
-                                </li>
-                                <br>
-                                <li>
-                                    <label for="duration">Duración de la reserva (en horas):</label>
-                                    <input type="number" id="duration" name="duration" required>
-                                </li>
-                            </ul>
-                            <button type="submit">Buscar Estacionamientos</button>
-                        </form>
-                    </fieldset>
-                    <br>
-                    <fieldset>
-                        <legend>Resultados de la Búsqueda</legend>
-                        <div class="form-result">
-                            {% if search_results %}
-                        <ul>
-                            {% for result in search_results %}
-                            <li>{{ result.name }} - {{ result.location }} - Disponibilidad: {{ result.available }} plazas</li>
-                            {% endfor %}
+			<div class="education">
+				<h2 class="white">Education</h2>
+					<div class="education-content">
+						<h4 class="education-title accent">New Web Design</h4>
+							<div class="education-school">
+								<h5>School of Media</h5><span></span>
+								<h5>2030 January - 2034 December</h5>
+							</div>
+						<p class="education-description">In lacinia leo sed quam feugiat, ac efficitur dui tristique. Ut venenatis, odio quis cursus egestas, nulla sem volutpat diam, ac dapibus nisl ipsum ut ipsum. Nunc tincidunt libero non magna placerat elementum.</p>
+					</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-12">
+			<div class="languages">
+				<h2>Languages</h2>
+					<ul>
+						<li>Myanmar / Thai</li>
+						<li>English / Spanish</li>
+						<li>Chinese / Japanese</li>
+						<li>Arabic / Hebrew</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- contact and experience -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-12">
+			<div class="contact">
+				<h2>Contact</h2>
+					<p><i class="fa fa-map-marker"></i> 123 Rama IX Road, Bangkok</p>
+					<p><i class="fa fa-phone"></i> 010-020-0890</p>
+					<p><i class="fa fa-envelope"></i> easy@company.com</p>
+					<p><i class="fa fa-globe"></i> www.company.com</p>
+			</div>
+		</div>
+		<div class="col-md-8 col-sm-12">
+			<div class="experience">
+				<h2 class="white">Experiences</h2>
+					<div class="experience-content">
+						<h4 class="experience-title accent">Website Development</h4>
+						<h5>New Media Company</h5><span></span>
+						<h5>2035 January - 2036 April</h5>
+						<p class="education-description">Cras porta tincidunt sem, in sollicitudin lorem efficitur ut. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+					</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Start Footer Area -->
+<footer class="footer">
+    <!-- Start Footer Top -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer f-about">
+                        <div class="logo">
+                            <a href="#home">
+                                <img src= "{% static 'img/logo/logo_1.svg' %}" alt="#">
+                            </a>
+                        </div>
+                        <p>Descubre el poder de un estacionamiento sin preocupaciones. ¡Reserva ahora y vive la experiencia!</p>
+                        <ul class="social">
+                            <li><a href="https://www.facebook.com/"><img src="{% static 'img/icons/facebook.svg' %}"></i></a></li>
+                            <li><a href="https://github.com/JeanRiveraUNI"><img src="{% static 'img/icons/github.svg' %}"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><img src="{% static 'img/icons/instagram.svg' %}"></i></a></li>
+                            <li><a href="https://www.whatsapp.com/"><img src="{% static 'img/icons/whatsapp.svg' %}"></i></a></li>
+                            <li><a href="https://twitter.com/"><img src="{% static 'img/icons/twitter.svg' %}"></i></a></li>
                         </ul>
-                        {% else %}
-                        <p>No se encontraron resultados para la búsqueda.</p>
-                        {% endif %}
-                    </div>    
+                        <p class="copyright-text">Diseñado y desarrollado por <a href="https://github.com/JeanRiveraUNI"
+                                rel="nofollow" target="_blank">@JeanRiveraUNI</a>
+                        </p>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-8 col-md-8 col-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Solutions</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Marketing</a></li>
+                                    <li><a href="javascript:void(0)">Analytics</a></li>
+                                    <li><a href="javascript:void(0)">Commerce</a></li>
+                                    <li><a href="javascript:void(0)">Insights</a></li>
+                                    <li><a href="javascript:void(0)">Promotion</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Support</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Pricing</a></li>
+                                    <li><a href="javascript:void(0)">Documentation</a></li>
+                                    <li><a href="javascript:void(0)">Guides</a></li>
+                                    <li><a href="javascript:void(0)">API Status</a></li>
+                                    <li><a href="javascript:void(0)">Live Support</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">About Us</a></li>
+                                    <li><a href="javascript:void(0)">Our Blog</a></li>
+                                    <li><a href="javascript:void(0)">Jobs</a></li>
+                                    <li><a href="javascript:void(0)">Press</a></li>
+                                    <li><a href="javascript:void(0)">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                                    <li><a href="javascript:void(0)">Catering Services</a></li>
+                                    <li><a href="javascript:void(0)">Customer Relations</a></li>
+                                    <li><a href="javascript:void(0)">Innovation</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+    <!--/ End Footer Top -->
+</footer>
+<!--/ End Footer Area -->
+<!-- javascript js -->	
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.backstretch.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 
-<div class="profile-container">
-    <h1>Bienvenido</h1>
-    <div class="acciones">
-        <h3>Descarga nuestra App</h3>
-        <a href="#" class="boton-descargar">Descargar la App</a>
-    <selection class="profile-accion">
-        <img src="{% static 'img/user.png' %}" alt="Foto de perfil" class="profile__avatar">
 
-        <h2 class="profile__name">Nombre de Usuario</h2>
-        <p class="profile__web">www.mipagina.com</p>
-        <p class="profile__bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
-    </selection>
-    </div>
-
-</div>
-
-<script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-</script>
 </body>
 </html>
