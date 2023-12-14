@@ -120,7 +120,7 @@ def login_per(request):
                         return redirect('usuario_per')
                     else:
                         print('Usuario y/o contraseña no válidos')
-                        return render(request, 'login_per.html', {'error': 'Usuario y/o contraseña no válidos'})
+                        return render(request, 'login_per.html',{'error':'Usuario y/o contraseña no válidos'})
                 else:
                     print('Error en la respuesta de la API')
                     return render(request, 'login_per.html', {'error': 'Error en la respuesta de la API'})
@@ -131,7 +131,7 @@ def login_per(request):
         
         else:
             print(form_login_per.errors)
-            return render(request, 'login_per.html', {'error': 'Usuario y/o contraseña no válidos'})
+            return render(request, 'login_per.html', {'error': 'Usuario y/o contraseña son incorrectos'})
     
     else:
         form_login_per = FormularioInicioPersona()
