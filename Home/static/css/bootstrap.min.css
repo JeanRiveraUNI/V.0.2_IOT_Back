@@ -53,8 +53,7 @@ body {
     line-height: 1.5;
     color: #212529;
     background-color: #fff;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
+    text-size-adjust: 100%;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -165,7 +164,8 @@ abbr[title] {
     text-decoration: underline dotted;
     cursor: help;
     -webkit-text-decoration-skip-ink: none;
-    text-decoration-skip-ink: none
+    -webkit-text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;
 }
 
 address {
@@ -323,8 +323,8 @@ caption {
 }
 
 th {
+    text-align: match-parent;
     text-align: inherit;
-    text-align: -webkit-match-parent
 }
 
 tbody,
@@ -382,7 +382,8 @@ select {
 [type=reset],
 [type=submit],
 button {
-    -webkit-appearance: button
+    -webkit-appearance: button;
+    appearance: button;
 }
 
 [type=button]:not(:disabled),
@@ -443,7 +444,8 @@ legend+* {
 
 [type=search] {
     outline-offset: -2px;
-    -webkit-appearance: textfield
+    -webkit-appearance: textfield;
+    appearance: textfield;
 }
 
 ::-webkit-search-decoration {
