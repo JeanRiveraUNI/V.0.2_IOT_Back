@@ -215,26 +215,5 @@ def UserPer(request):
         print(f'Error al hacer la solicitud a la API: {e}')
         return render(request, 'user_per.html', {'error': 'Error al hacer la solicitud a la API'})
 
-
-
-def reservar(request):
-    if request.method == 'POST':
-        form_reserva = FormularioReserva(request.POST)
-        if form_reserva.is_valid():
-            email = form_reserva.cleaned_data['email']
-            location = form_reserva.cleaned_data['location']
-            reservation = form_reserva.cleaned_data['reservation']
-
-            api_url = 'http://localhost:3000/api/v2/users/'
-            api_params = {
-                'email': email,
-                'location': location,
-            }
-
-            try:
-                api_response = requests.get(api_url, params=api_params)
-                
-
-
 def UserEmp(request):
     return render(request, 'user_emp.html')

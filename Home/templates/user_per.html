@@ -135,38 +135,37 @@ http://www.templatemo.com/tm-467-easy-profile
 <!-- contact and experience -->
 <section class="container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3 col-sm-12">
 			<div class="contact">
 				<h2>Contact</h2>
-					<p><i class="fa fa-map-marker"></i> 123 Rama IX Road, Bangkok</p>
+					<p><i class="fa fa-map-marker"></i> 123 Innovapark Street, YourCity</p>
 					<p><i class="fa fa-phone"></i> 010-020-0890</p>
-					<p><i class="fa fa-envelope"></i> easy@company.com</p>
-					<p><i class="fa fa-globe"></i> www.company.com</p>
+					<p><i class="fa fa-envelope"></i> info@innovapark.com</p>
+					<p><i class="fa fa-globe"></i> www.innovapark.com</p>
 			</div>
 		</div>
-		<div class="col-md-8 col-sm-12">
+		<div class="col-md-3 col-sm-12">
 			<div class="experience">
 				<h2 class="white">
-                    Experiences
+                    Solicitud de Asistencia
                 </h2>
                 <div class="lista-estacionamiento">
-                    <form method="POST">
+                    <form method="GET" action="/solicitud-asistencia">
                         {% csrf_token %}
-                        <h5>ingresa tus datos</h5>
-                        <br>
-                        <h6><label for="email">Correo electronico:</label></h6>
-                        <input type="email" id="email" name="email" required>
-                        <br>
-                        <h6><label for="location">Ubicacion:</label></h6>
-                        <input type="location" id="location" name="location" required>
-                        <br>
-                        <h6><label for="reservation">Fecha de reserva:</label></h6>
-                        <input type="date" id="reservation" name="reservation" required>
-                        <br>
-                        <button type="submit">Reservar</button>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre" required>
+                    
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" name="email" id="email" placeholder="Tu Correo Electrónico" required>
+                    
+                        <label for="asunto">Asunto:</label>
+                        <input type="text" name="asunto" id="asunto" placeholder="Asunto de la Solicitud" required>
+                    
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea name="mensaje" id="mensaje" placeholder="Describe tu solicitud de asistencia" rows="4" required></textarea>
+                    
+                        <button type="submit">Enviar Solicitud</button>
                     </form>
-                    {{ error }}
-                    {{ message }}
                 </div>
 			</div>
 		</div>
@@ -267,11 +266,6 @@ http://www.templatemo.com/tm-467-easy-profile
 </footer>
 <!--/ End Footer Area -->
 <!-- javascript js -->	
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.backstretch.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-
 
 </body>
 </html>
