@@ -2,11 +2,11 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate 
-from .forms import FormularioCrearPersona, FormularioCrearEmpresa, FormularioInicioPersona, FormularioIncioEmpresa
-
+from .forms import FormularioCrearPersona, FormularioCrearEmpresa, FormularioInicioPersona, FormularioIncioEmpresa, FormularioReserva
+import logging
 import requests
 
-
+ 
 # Create your views here.
 def Home(request):
     return render(request, 'home.html')
@@ -202,7 +202,6 @@ def UserPer(request):
             # Verificar si 'data' está en el diccionario
             if 'data' in response_data:
                 parkings_list = response_data['data']
-                print(parkings_list)
                 return render(request, 'user_per.html', {'parkings_list': parkings_list})
             else:
                 print('Error en la respuesta de la API: clave "data" no encontrada')
@@ -215,6 +214,26 @@ def UserPer(request):
     except requests.exceptions.RequestException as e:
         print(f'Error al hacer la solicitud a la API: {e}')
         return render(request, 'user_per.html', {'error': 'Error al hacer la solicitud a la API'})
+
+
+
+def reservar(request):
+    if request.method == 'POST':
+        form_reserva = FormularioReserva(request.POST)
+        if form_reserva.is_valid():
+            email = form_reserva.cleaned_data['email']
+            location = form_reserva.cleaned_data['location']
+            reservation = form_reserva.cleaned_data['reservation']
+
+            api_url = 'http://localhost:3000/api/v2/users/'
+            api_params = {
+                'email': email,
+                'location': location,
+            }
+
+            try:
+                api_response = requests.get(api_url, params=api_params)
+                
 
 
 def UserEmp(request):

@@ -11,9 +11,13 @@ const reservationSchema = new mongoose.Schema({
         ref: 'location', 
         required: true 
     },
+    reservation: {
+        type: Date,
+        required: true
+    },
     startTime: {
         type: Date,
-        required: true,
+        default: null,
     },
     endTime: {
         type: Date,

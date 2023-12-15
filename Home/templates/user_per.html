@@ -36,26 +36,13 @@ http://www.templatemo.com/tm-467-easy-profile
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
-
-<!-- preloader section -->
-<div class="preloader">
-    <div class="preloader-inner">
-        <div class="preloader-icon">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</div>
-
 <!-- header section -->
 <header>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<img src="images/tm-easy-profile.jpg" class="img-responsive img-circle tm-border" alt="templatemo easy profile">
-				<hr>
-				<h1 class="tm-title bold shadow">Hi, I am Julia</h1>
-				<h1 class="white bold shadow">Creative Director</h1>
+				<h1 class="tm-title bold shadow">¡Bienvenido a bordo!</h1>
+                <h1 class="white bold shadow">Estamos emocionados de tenerte con nosotros.</h1>
 			</div>
 		</div>
 	</div>
@@ -66,29 +53,33 @@ http://www.templatemo.com/tm-467-easy-profile
 	<div class="row">
 		<div class="col-md-6 col-sm-12">
 			<div class="about">
-				<h3 class="accent">Easy Profile</h3>
-				<h2>Bootstrap v3.3.5</h2>
-				<p>This easy HTML profile is brought to you by templatemo website. There are 4 color themes, <a href="index-green.html">Green</a>, <a href="index.html">Blue</a>, <a href="index-gray.html">Gray</a>, and <a href="index-orange.html">Orange</a>. Sed vitae dui in neque elementum tempor eu id risus. Phasellus sed facilisis lacus, et venenatis augue.</p>
+				<h3 class="accent">¡Bienvenido a tu cuenta personal!</h3>
+                <br>
+                <br>
+                <br>
+				<h4>Personaliza tu perfil</h4>
+                <br>
+                <br>
+				<p>aprovecha ofertas exclusivas y mantente conectado con nuestra comunidad.
+                    Si necesitas ayuda, nuestro equipo está aquí para ti. 
+                    ¡Explora y disfruta de una experiencia única!
+                </p>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-12">
 			<div class="skills">
 				<h3 class="white">Estacionamiento Disponibles</h3>
-					<div class="progress">
-                        <ul>
-                            <ul>
-                                {% for parking in parkings_list %}
-                                    <li>
-                                        {{ parking.name }} -
-                                        {{ parking.location }}- 
-                                        {{ parking.capacity }} - 
-                                        {{ parking.available }}
-                                    </li>
-                                {% endfor %}
-                            </ul>                            
-                        </ul>
+					<div>
+                        <br>
+                        <h5><p>¡Descubre estacionamientos disponibles en tiempo real cerca de ti!
+
+                            Nuestra página presenta una lista actualizada al instante con la disponibilidad de espacios de estacionamiento según tu ubicación. 
+                            Encuentra fácilmente el lugar perfecto para estacionar sin complicaciones.
+                            <br> 
+                            ¡Bienvenido a una experiencia más conveniente!</p></h5>
                     </div>
                 </div>
+            </div>
         </div>
     </div>                                                                       
 </section>
@@ -96,30 +87,7 @@ http://www.templatemo.com/tm-467-easy-profile
 <!-- education and languages -->
 <section class="container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
-			<div class="education">
-				<h2 class="white">
-                    Estacionamiento Disponibles
-                </h2>
-				<div class="education-content">
-                    <h4 class="education-title accent">
-                        Cerca de ti:
-                    </h4>
-                    <br>
-                    <div class="education-school">
-                        {% for parking in parkings_list %}
-                        <li class="lista-estacionamiento">
-                            Ubicacion: {{ parking.location }}
-                            <br>
-                            Disponibles: {{ parking.available }}
-                        </li>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-12">
+        <div class="">
 			<div class="languages">
                 {% for parking in parkings_list %}
                 <li class="lista-estacionamiento">
@@ -130,6 +98,38 @@ http://www.templatemo.com/tm-467-easy-profile
 			</div>
 		</div>
 	</div>
+    <div class="">
+        <div class="education">
+            <h2 class="white">
+                Reserva Tu Estacionamiento
+            </h2>
+            <div class="education-content">
+                <h4 class="education-title accent">
+                    Aqui Vamos!
+                </h4>
+                <br>
+                <div class="lista-estacionamiento">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h5>ingresa tus datos</h5>
+                        <br>
+                        <h6><label for="email">Correo electronico:</label></h6>
+                        <input type="email" id="email" name="email" required>
+                        <br>
+                        <h6><label for="location">Ubicacion:</label></h6>
+                        <input type="location" id="location" name="location" required>
+                        <br>
+                        <h6><label for="reservation">Fecha de reserva:</label></h6>
+                        <input type="date" id="reservation" name="reservation" required>
+                        <br>
+                        <button type="submit">Reservar</button>
+                    </form>
+                    {{ error }}
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- contact and experience -->
@@ -146,13 +146,28 @@ http://www.templatemo.com/tm-467-easy-profile
 		</div>
 		<div class="col-md-8 col-sm-12">
 			<div class="experience">
-				<h2 class="white">Experiences</h2>
-					<div class="experience-content">
-						<h4 class="experience-title accent">Website Development</h4>
-						<h5>New Media Company</h5><span></span>
-						<h5>2035 January - 2036 April</h5>
-						<p class="education-description">Cras porta tincidunt sem, in sollicitudin lorem efficitur ut. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-					</div>
+				<h2 class="white">
+                    Experiences
+                </h2>
+                <div class="lista-estacionamiento">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h5>ingresa tus datos</h5>
+                        <br>
+                        <h6><label for="email">Correo electronico:</label></h6>
+                        <input type="email" id="email" name="email" required>
+                        <br>
+                        <h6><label for="location">Ubicacion:</label></h6>
+                        <input type="location" id="location" name="location" required>
+                        <br>
+                        <h6><label for="reservation">Fecha de reserva:</label></h6>
+                        <input type="date" id="reservation" name="reservation" required>
+                        <br>
+                        <button type="submit">Reservar</button>
+                    </form>
+                    {{ error }}
+                    {{ message }}
+                </div>
 			</div>
 		</div>
 	</div>

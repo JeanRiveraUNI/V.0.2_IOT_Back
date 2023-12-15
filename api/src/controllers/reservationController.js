@@ -12,9 +12,32 @@ async function getAllReservations(req, res) {
     }
 }
 
-// esta funcion se encarga de llamar al servicio
-// para crear un nuevo reservation
-// y luego enviar la respuesta
+const createReservation = async (req, res) => {
+    const body = req.body;
+    if (
+        !body.email ||
+        !body.location ||
+        !body.reservation 
+    ) {
+        return;
+    }
+    const newReservation = {
+        email: body.email,
+        location: body.location,
+        reservation: body.reservation,
+    };
+    try {
+        const createdReservation = await reservationService.createReservation(newReservation);
+        console.log('Reserva creada:', createdReservation);
+        res.status(201).send({status: 'OK', data: createdReservation});
+    } catch (error) {
+        console.error('Error al crear la reserva:', error);
+        res.status(500).send({ status: 'Error', message: 'Error interno del servidor' });
+    }
+}
+
+
+/*
 async function createReservation(req, res) {
     const reservationData = req.body;
     try {
@@ -24,6 +47,7 @@ async function createReservation(req, res) {
         res.status(500).json({ error : error.message });
     }
 }
+*/
 // esta funcion se encarga de llamar al servicio
 // para obtener un reservation por su id
 // y luego enviar la respuesta
